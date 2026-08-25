@@ -9,6 +9,7 @@ change to the app screen or the contacts:
 """
 from __future__ import annotations
 
+import base64
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -41,8 +42,28 @@ PEOPLE = [
 ]
 
 
-def vcard(p: dict) -> str:
+# Harvesters scrape the served HTML with a regex; they do not run JavaScript, decode
+# base64 or read QR pixels. So every contact detail — phone, email, house number and
+# postal code — leaves this generator masked in the markup and base64-encoded in the
+# payload, and the page fills the real values in on load.
+# This is anti-spam, not privacy: the same details are still in the QR images, in
+# app/.../Fits.kt and in PEOPLE above.
+def mask_digits(text: str) -> str:
+    """House number, postal code, phone: every digit becomes a bullet."""
+    return "".join("\u2022" if c.isdigit() else c for c in text)
+
+
+def mask_email(email: str) -> str:
+    local, _, domain = email.partition("@")
+    return "\u2022" * len(local) + "@" + domain
+
+
+def vcard(p: dict, mask: bool = False) -> str:
     """Byte-for-byte the string Contact.vCard builds in app/.../Fits.kt."""
+    phone = mask_digits(p["phone"]) if mask else p["phone"]
+    email = mask_email(p["email"]) if mask else p["email"]
+    street = mask_digits(STREET) if mask else STREET
+    postal = mask_digits(POSTAL) if mask else POSTAL
     return "\r\n".join([
         "BEGIN:VCARD",
         "VERSION:3.0",
@@ -50,9 +71,9 @@ def vcard(p: dict) -> str:
         f"FN:{p['first']} {p['last']}",
         f"ORG:{ORG}",
         f"TITLE:{p['role']}",
-        f"TEL;TYPE=WORK,VOICE:{p['phone']}",
-        f"EMAIL;TYPE=WORK,INTERNET:{p['email']}",
-        f"ADR;TYPE=WORK:;;{STREET};{CITY};;{POSTAL};{COUNTRY}",
+        f"TEL;TYPE=WORK,VOICE:{phone}",
+        f"EMAIL;TYPE=WORK,INTERNET:{email}",
+        f"ADR;TYPE=WORK:;;{street};{CITY};;{postal};{COUNTRY}",
         f"URL:{WEBSITE}",
         "END:VCARD",
     ]) + "\r\n"
@@ -155,6 +176,11 @@ STRINGS = {
             "in plain UTF-8, generated on your device. This is the exact text the card on the "
             "left is showing right now."
         ),
+        "payload_noscript": (
+            "The digits above are hidden while JavaScript is off — this page masks phone "
+            "numbers, email addresses and the house number so address harvesters cannot "
+            "scrape them. Turn JavaScript on, or scan the QR code, to see the full vCard."
+        ),
         "facts": [
             (ICON_OFFLINE, "No permissions, no network",
              "The app asks for nothing and talks to nobody. QR codes are generated on-device "
@@ -229,6 +255,11 @@ STRINGS = {
             "vCard 3.0 i almindelig UTF-8, genereret på din egen telefon. Det er præcis den "
             "tekst, kortet til venstre viser lige nu."
         ),
+        "payload_noscript": (
+            "Cifrene ovenfor er skjult, fordi JavaScript er slået fra. Siden maskerer "
+            "telefonnumre, mailadresser og husnummeret, så robotter ikke kan høste dem. "
+            "Slå JavaScript til, eller scan QR-koden, for at se hele kortet."
+        ),
         "facts": [
             (ICON_OFFLINE, "Ingen tilladelser, intet netværk",
              "Appen beder ikke om noget og kontakter ingen. QR-koderne genereres på telefonen "
@@ -285,9 +316,9 @@ def card_html(p: dict, s: dict) -> str:
           <p class="scan-hint">{ICON_SCAN}{s['scan']}</p>
           <div class="rows">
             <div class="row">{ICON_PERSON}<div><div class="row-name">{name}</div><div class="row-role">{p['role']}</div></div></div>
-            <div class="row">{ICON_MAIL}<div class="row-value">{p['email']}</div></div>
-            <div class="row">{ICON_PHONE}<div class="row-value">{p['phone']}</div></div>
-            <div class="row">{ICON_PIN}<div class="row-value">{ADDRESS}</div></div>
+            <div class="row">{ICON_MAIL}<div class="row-value" data-vc="EMAIL">{mask_email(p['email'])}</div></div>
+            <div class="row">{ICON_PHONE}<div class="row-value" data-vc="TEL">{mask_digits(p['phone'])}</div></div>
+            <div class="row">{ICON_PIN}<div class="row-value" data-vc="ADR">{mask_digits(ADDRESS)}</div></div>
             <div class="row-foot"><b>fits.dk</b><i></i>{s['foot_note']}</div>
           </div>
         </article>"""
@@ -295,7 +326,7 @@ def card_html(p: dict, s: dict) -> str:
 
 def vcard_markup(p: dict) -> str:
     out = []
-    for line in vcard(p).strip().split("\r\n"):
+    for line in vcard(p, mask=True).strip().split("\r\n"):
         key, _, value = line.partition(":")
         if value:
             out.append(f'<span class="k">{key}:</span><span class="v">{value}</span>')
@@ -341,11 +372,12 @@ def phone_block(s: dict, indent: str = "      ") -> str:
 
 
 def vcards_json(indent: str = "  ") -> str:
+    """The vCards as base64, so no contact detail appears as text in the served HTML."""
     body = ",\n".join(
-        "{}{}: {!r}".format(indent + "  ", i, vcard(p).strip()).replace("'", '"')
-        for i, p in enumerate(PEOPLE)
+        '{}"{}"'.format(indent + "  ", base64.b64encode(vcard(p).strip().encode()).decode())
+        for p in PEOPLE
     )
-    return "{\n" + body + "\n" + indent + "}"
+    return "[\n" + body + "\n" + indent + "]"
 
 
 # Raw string: braces are JS, not placeholders, and the \r\n escapes must reach the
@@ -357,7 +389,32 @@ PAGER_JS = r"""
   const dots = [...document.querySelectorAll("#dots button")];
   const out = document.getElementById("vcard");
   const cards = [...track.children];
-  const VCARDS = window.__FITS_VCARDS;
+
+  // The vCards ship base64-encoded so that a scraper reading the raw HTML finds no
+  // phone number or address to harvest. TextDecoder, not atob alone, because the
+  // payload is UTF-8 and the names carry ø and æ.
+  const decode = (s) =>
+    new TextDecoder().decode(Uint8Array.from(atob(s), (c) => c.charCodeAt(0)));
+  const VCARDS = (window.__FITS_VCARDS || []).map(decode);
+
+  // Swap each card's masked phone, email and address for the real values.
+  const field = (vcard, key) => {
+    const line = vcard.split("\r\n").find((l) => l.startsWith(key));
+    return line ? line.slice(line.indexOf(":") + 1) : "";
+  };
+  // ADR is structured (;;street;city;;postal;country); the row shows it the way a
+  // letter would be addressed.
+  const display = (vcard, key) => {
+    const value = field(vcard, key);
+    if (key !== "ADR") return value;
+    const [, , street, city, , postal] = value.split(";");
+    return `${street}, ${postal} ${city}`;
+  };
+  cards.forEach((card, i) => {
+    card.querySelectorAll("[data-vc]").forEach((el) => {
+      el.textContent = display(VCARDS[i], el.dataset.vc);
+    });
+  });
 
   let index = 0;
 
@@ -594,6 +651,7 @@ def page(lang: str) -> str:
         <p>{s['payload_p']}</p>
       </div>
       <pre class="vcard" id="vcard" aria-live="polite">{vcard_markup(PEOPLE[0])}</pre>
+      <noscript><p class="vcard-note">{s['payload_noscript']}</p></noscript>
     </div>
   </section>
 
