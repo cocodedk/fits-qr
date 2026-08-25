@@ -348,8 +348,9 @@ def vcards_json(indent: str = "  ") -> str:
     return "{\n" + body + "\n" + indent + "}"
 
 
-# Plain string, not an f-string: braces are JS, not placeholders.
-PAGER_JS = """
+# Raw string: braces are JS, not placeholders, and the \r\n escapes must reach the
+# browser as two characters rather than being interpreted by Python.
+PAGER_JS = r"""
 (() => {
   const track = document.getElementById("track");
   const screen = document.getElementById("screen");

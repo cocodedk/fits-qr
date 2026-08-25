@@ -234,15 +234,13 @@ window.__FITS_VCARDS = {
     cards.forEach((c, i) => c.toggleAttribute("inert", i !== index));
     if (!out) return;
     out.innerHTML = VCARDS[index]
-      .split("
-")
+      .split("\r\n")
       .map((line) => {
         const at = line.indexOf(":");
         if (at < 0) return `<span class="k">${line}</span>`;
         return `<span class="k">${line.slice(0, at + 1)}</span><span class="v">${line.slice(at + 1)}</span>`;
       })
-      .join("
-");
+      .join("\n");
   };
 
   const go = (next) => {
