@@ -515,6 +515,16 @@ body.kiosk .phone {
 .vcard .k { color: var(--teal); }
 .vcard .v { color: var(--ink); }
 
+/* Rendered only when JavaScript is off, which is the one state where the vCard above
+   still shows its masked digits. Spans both columns so it reads as a footnote. */
+.payload .shell > noscript { grid-column: 1 / -1; }
+.vcard-note {
+  max-width: none;
+  font-size: 0.875rem;
+  border-left: 2px solid var(--hairline);
+  padding-left: 14px;
+}
+
 /* ── Facts ──────────────────────────────────────────────────────────── */
 .facts { padding: 56px 0; }
 .facts .shell {
