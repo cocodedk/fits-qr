@@ -34,7 +34,10 @@ mkdir -p "$dir"
 chmod 700 "$dir"
 
 keystore_password=$(openssl rand -base64 24 | tr -d '\n=+/' | cut -c1-24)
-key_password=$(openssl rand -base64 24 | tr -d '\n=+/' | cut -c1-24)
+# PKCS12 (keytool's default since JDK 9) cannot hold a key password that differs from
+# the store password — it silently ignores -keypass. Keep them identical so the Gradle
+# signing config, which passes both, actually opens the key.
+key_password="$keystore_password"
 
 "$keytool_bin" -genkeypair \
   -keystore "$keystore" \
@@ -53,6 +56,7 @@ export KEY_PASSWORD="$key_password"
 EOF
 chmod 600 "$creds"
 
+chmod 600 "$keystore"
 echo "Keystore created at $keystore"
 echo "Credentials written to $creds (chmod 600)"
 echo "Next: bash scripts/setup-signing.sh"
