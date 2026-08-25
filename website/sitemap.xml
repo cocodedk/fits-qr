@@ -17,4 +17,20 @@
     <xhtml:link rel="alternate" hreflang="da" href="https://cocodedk.github.io/fits-qr/da/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocodedk.github.io/fits-qr/"/>
   </url>
+  <url>
+    <loc>https://cocodedk.github.io/fits-qr/app/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocodedk.github.io/fits-qr/app/"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://cocodedk.github.io/fits-qr/da/app/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocodedk.github.io/fits-qr/app/"/>
+  </url>
+  <url>
+    <loc>https://cocodedk.github.io/fits-qr/da/app/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocodedk.github.io/fits-qr/app/"/>
+    <xhtml:link rel="alternate" hreflang="da" href="https://cocodedk.github.io/fits-qr/da/app/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocodedk.github.io/fits-qr/app/"/>
+  </url>
 </urlset>

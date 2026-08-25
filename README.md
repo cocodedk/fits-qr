@@ -19,11 +19,18 @@ let anyone scan the QR code to save the contact. Offline, no permissions, no tra
 
 ## Website
 
-- [English](https://cocodedk.github.io/fits-qr/)
-- [Dansk](https://cocodedk.github.io/fits-qr/da/)
+- [English](https://cocodedk.github.io/fits-qr/) · [Dansk](https://cocodedk.github.io/fits-qr/da/)
+- The app on its own page, filling the display:
+  [English](https://cocodedk.github.io/fits-qr/app/) ·
+  [Dansk](https://cocodedk.github.io/fits-qr/da/app/)
 
 The site shows the same screen the app does, with the same working swipe and the same live QR
-codes — you can scan them straight off your monitor.
+codes — you can scan them straight off your monitor. The landing page's **Fullscreen** button
+blows the phone up to fill the browser; `/app/` is the same screen with no site chrome around
+it, which is what you want on a laptop at a stand or on a tablet propped on a desk.
+
+Both are scaled, never reflowed: the screen stays a 390×844 block so it keeps the exact layout
+the phone shows.
 
 ## What it does
 

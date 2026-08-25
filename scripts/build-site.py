@@ -185,6 +185,15 @@ STRINGS = {
         "footer_about": "About FITS",
         "footer_src": "Source",
         "footer_license": "Apache-2.0",
+        "fullscreen": "Fullscreen",
+        "exit_fullscreen": "Leave fullscreen",
+        "kiosk_link": "Open the app on its own page",
+        "kiosk_title": "FITS QR — the app, fullscreen",
+        "kiosk_desc": (
+            "The FITS QR app screen on its own, filling the display. Swipe between the three "
+            "contacts and scan a code to save it."
+        ),
+        "back_label": "Back to the site",
     },
     "da": {
         "lang": "da",
@@ -250,6 +259,15 @@ STRINGS = {
         "footer_about": "Om FITS",
         "footer_src": "Kildekode",
         "footer_license": "Apache-2.0",
+        "fullscreen": "Fuldskærm",
+        "exit_fullscreen": "Forlad fuldskærm",
+        "kiosk_link": "Åbn appen på sin egen side",
+        "kiosk_title": "FITS QR — appen i fuldskærm",
+        "kiosk_desc": (
+            "FITS QR-appens skærm alene, i fuld størrelse. Skift mellem de tre kontakter og "
+            "scan en kode for at gemme den."
+        ),
+        "back_label": "Tilbage til siden",
     },
 }
 
@@ -286,17 +304,180 @@ def vcard_markup(p: dict) -> str:
     return "\n".join(out)
 
 
-def page(lang: str) -> str:
-    s = STRINGS[lang]
-    pre = s["prefix"]
-    canonical = f"{BASE}/" if lang == "en" else f"{BASE}/{lang}/"
-    og_alt = "The FITS QR app screen, showing a contact card and its QR code"
+ICON_EXPAND = (
+    '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+    '<path d="M9 4.5H4.5V9M15 4.5H19.5V9M9 19.5H4.5V15M15 19.5H19.5V15" '
+    'stroke="currentColor" stroke-width="1.9" stroke-linecap="round" '
+    'stroke-linejoin="round"/></svg>'
+)
+
+
+def phone_block(s: dict, indent: str = "      ") -> str:
+    """The app screen, 390x844 exactly. Shared by the landing hero and the fullscreen page."""
     cards = "\n".join(card_html(p, s) for p in PEOPLE)
     dots = "\n".join(
         f'          <button type="button" data-go="{i}" aria-current="{"true" if i == 0 else "false"}"'
         f' aria-label="{p["first"]} {p["last"]}"></button>'
         for i, p in enumerate(PEOPLE)
     )
+    block = f"""<div class="phone" id="phone">
+  <div class="phone-screen" id="screen" aria-label="{s['phone_label']}" tabindex="0" role="region">
+    <div class="screen-grid"></div>
+    <div class="app">
+      <img class="app-logo" src="{s['prefix']}fits-logo-white.png" width="336" height="261" alt="FITS">
+      <p class="app-tagline">AI-Powered Policy Automation</p>
+      <div class="pager">
+        <div class="track" id="track">
+{cards}
+        </div>
+      </div>
+      <div class="dots" id="dots" role="tablist" aria-label="{s['dots_label']}">
+{dots}
+      </div>
+    </div>
+  </div>
+</div>"""
+    return "\n".join(indent + line if line else line for line in block.split("\n"))
+
+
+def vcards_json(indent: str = "  ") -> str:
+    body = ",\n".join(
+        "{}{}: {!r}".format(indent + "  ", i, vcard(p).strip()).replace("'", '"')
+        for i, p in enumerate(PEOPLE)
+    )
+    return "{\n" + body + "\n" + indent + "}"
+
+
+# Plain string, not an f-string: braces are JS, not placeholders.
+PAGER_JS = """
+(() => {
+  const track = document.getElementById("track");
+  const screen = document.getElementById("screen");
+  const dots = [...document.querySelectorAll("#dots button")];
+  const out = document.getElementById("vcard");
+  const cards = [...track.children];
+  const VCARDS = window.__FITS_VCARDS;
+
+  let index = 0;
+
+  const paint = () => {
+    track.style.transform = `translate3d(${-index * 100}%, 0, 0)`;
+    dots.forEach((d, i) => d.setAttribute("aria-current", String(i === index)));
+    cards.forEach((c, i) => c.toggleAttribute("inert", i !== index));
+    if (!out) return;
+    out.innerHTML = VCARDS[index]
+      .split("\r\n")
+      .map((line) => {
+        const at = line.indexOf(":");
+        if (at < 0) return `<span class="k">${line}</span>`;
+        return `<span class="k">${line.slice(0, at + 1)}</span><span class="v">${line.slice(at + 1)}</span>`;
+      })
+      .join("\n");
+  };
+
+  const go = (next) => {
+    index = (next + cards.length) % cards.length;
+    paint();
+  };
+
+  dots.forEach((d) => d.addEventListener("click", () => go(Number(d.dataset.go))));
+
+  screen.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") { go(index - 1); e.preventDefault(); }
+    if (e.key === "ArrowRight") { go(index + 1); e.preventDefault(); }
+  });
+
+  // Drag / swipe, mirroring the app's pager: follow the finger, then settle.
+  let startX = null;
+  let delta = 0;
+  const move = (x) => {
+    if (startX === null) return;
+    delta = x - startX;
+    track.style.transform = `translate3d(calc(${-index * 100}% + ${delta}px), 0, 0)`;
+  };
+  const up = () => {
+    if (startX === null) return;
+    track.classList.remove("dragging");
+    const threshold = Math.min(90, track.getBoundingClientRect().width * 0.22);
+    if (delta <= -threshold) go(index + 1);
+    else if (delta >= threshold) go(index - 1);
+    else paint();
+    startX = null;
+  };
+
+  screen.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    startX = e.clientX;
+    delta = 0;
+    track.classList.add("dragging");
+    screen.setPointerCapture(e.pointerId);
+  });
+  screen.addEventListener("pointermove", (e) => move(e.clientX));
+  screen.addEventListener("pointerup", up);
+  screen.addEventListener("pointercancel", up);
+  screen.addEventListener("dragstart", (e) => e.preventDefault());
+
+  paint();
+})();
+"""
+
+# The app screen is a fixed 390x844 box, so it is scaled — never reflowed — to fill a
+# viewport. That keeps it pixel-for-pixel the layout the phone shows.
+FIT_JS = """
+(() => {
+  const phone = document.getElementById("phone");
+  const fit = () => {
+    const narrow = window.matchMedia("(max-width: 520px)").matches;
+    // Bare 390x844 screen on small viewports; the framed 412x866 device elsewhere.
+    const w = narrow ? 390 : 412;
+    const h = narrow ? 844 : 866;
+    const pad = narrow ? 0 : 56;
+    const scale = Math.min(
+      (window.innerWidth - pad) / w,
+      (window.innerHeight - pad) / h,
+    );
+    phone.style.setProperty("--fit", String(Math.max(0.3, scale)));
+  };
+  fit();
+  window.addEventListener("resize", fit);
+  window.addEventListener("orientationchange", fit);
+})();
+"""
+
+FULLSCREEN_JS = """
+(() => {
+  const btn = document.getElementById("go-fullscreen");
+  const phone = document.getElementById("phone");
+  if (!btn || !phone || !phone.requestFullscreen) return;
+
+  const fit = () => {
+    if (!document.fullscreenElement) {
+      phone.style.removeProperty("--fit");
+      return;
+    }
+    const scale = Math.min(window.innerWidth / 412, window.innerHeight / 866);
+    phone.style.setProperty("--fit", String(Math.max(0.3, scale)));
+  };
+
+  btn.hidden = false;
+  btn.addEventListener("click", () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else phone.requestFullscreen().catch(() => {});
+  });
+  document.addEventListener("fullscreenchange", () => {
+    btn.setAttribute("aria-pressed", String(Boolean(document.fullscreenElement)));
+    fit();
+  });
+  window.addEventListener("resize", fit);
+})();
+"""
+
+
+def page(lang: str) -> str:
+    s = STRINGS[lang]
+    pre = s["prefix"]
+    canonical = f"{BASE}/" if lang == "en" else f"{BASE}/{lang}/"
+    og_alt = "The FITS QR app screen, showing a contact card and its QR code"
     facts = "\n".join(
         f"""      <div class="fact">{icon}<h3>{title}</h3><p>{body}</p></div>"""
         for icon, title, body in s["facts"]
@@ -304,10 +485,10 @@ def page(lang: str) -> str:
     steps = "\n".join(
         f"""        <li><h3>{title}</h3><p>{body}</p></li>""" for title, body in s["steps"]
     )
-    vcards_js = ",\n    ".join(
-        "{}: {!r}".format(i, vcard(p).strip()).replace("'", '"') for i, p in enumerate(PEOPLE)
-    )
     year = 2026
+    phone = phone_block(s, indent="        ")
+    vcards = vcards_json()
+    app_href = "app/" if lang == "en" else "app/"
 
     return f"""<!doctype html>
 <html lang="{s['lang']}" dir="{s['dir']}">
@@ -395,21 +576,11 @@ def page(lang: str) -> str:
         <p class="cta-note">{s['cta_note']}</p>
       </div>
 
-      <div class="phone">
-        <div class="phone-screen" id="screen" aria-label="{s['phone_label']}" tabindex="0" role="region">
-          <div class="screen-grid"></div>
-          <div class="app">
-            <img class="app-logo" src="{pre}fits-logo-white.png" width="336" height="261" alt="FITS">
-            <p class="app-tagline">AI-Powered Policy Automation</p>
-            <div class="pager">
-              <div class="track" id="track">
-{cards}
-              </div>
-            </div>
-            <div class="dots" id="dots" role="tablist" aria-label="{s['dots_label']}">
-{dots}
-            </div>
-          </div>
+      <div class="stage">
+{phone}
+        <div class="stage-controls">
+          <button class="btn btn-ghost btn-sm" type="button" id="go-fullscreen" aria-pressed="false" hidden>{ICON_EXPAND}{s['fullscreen']}</button>
+          <a class="stage-link" href="{app_href}">{s['kiosk_link']}</a>
         </div>
       </div>
     </div>
@@ -453,77 +624,70 @@ def page(lang: str) -> str:
 </footer>
 
 <script>
-(() => {{
-  const track = document.getElementById("track");
-  const screen = document.getElementById("screen");
-  const dots = [...document.querySelectorAll("#dots button")];
-  const out = document.getElementById("vcard");
-  const cards = [...track.children];
-  const VCARDS = {{
-    {vcards_js}
-  }};
-
-  let index = 0;
-  let width = () => track.getBoundingClientRect().width;
-
-  const paint = () => {{
-    track.style.transform = `translate3d(${{-index * 100}}%, 0, 0)`;
-    dots.forEach((d, i) => d.setAttribute("aria-current", String(i === index)));
-    cards.forEach((c, i) => c.toggleAttribute("inert", i !== index));
-    out.innerHTML = VCARDS[index]
-      .split("\\r\\n")
-      .map((line) => {{
-        const at = line.indexOf(":");
-        if (at < 0) return `<span class="k">${{line}}</span>`;
-        return `<span class="k">${{line.slice(0, at + 1)}}</span><span class="v">${{line.slice(at + 1)}}</span>`;
-      }})
-      .join("\\n");
-  }};
-
-  const go = (next) => {{
-    index = (next + cards.length) % cards.length;
-    paint();
-  }};
-
-  dots.forEach((d) => d.addEventListener("click", () => go(Number(d.dataset.go))));
-
-  screen.addEventListener("keydown", (e) => {{
-    if (e.key === "ArrowLeft") {{ go(index - 1); e.preventDefault(); }}
-    if (e.key === "ArrowRight") {{ go(index + 1); e.preventDefault(); }}
-  }});
-
-  // Drag / swipe, mirroring the app's pager: follow the finger, then settle.
-  let startX = null;
-  let delta = 0;
-  const down = (x) => {{ startX = x; delta = 0; track.classList.add("dragging"); }};
-  const move = (x) => {{
-    if (startX === null) return;
-    delta = x - startX;
-    track.style.transform = `translate3d(calc(${{-index * 100}}% + ${{delta}}px), 0, 0)`;
-  }};
-  const up = () => {{
-    if (startX === null) return;
-    track.classList.remove("dragging");
-    const threshold = Math.min(90, width() * 0.22);
-    if (delta <= -threshold) go(index + 1);
-    else if (delta >= threshold) go(index - 1);
-    else paint();
-    startX = null;
-  }};
-
-  screen.addEventListener("pointerdown", (e) => {{
-    if (e.pointerType === "mouse" && e.button !== 0) return;
-    down(e.clientX);
-    screen.setPointerCapture(e.pointerId);
-  }});
-  screen.addEventListener("pointermove", (e) => move(e.clientX));
-  screen.addEventListener("pointerup", up);
-  screen.addEventListener("pointercancel", up);
-  screen.addEventListener("dragstart", (e) => e.preventDefault());
-
-  paint();
-}})();
+window.__FITS_VCARDS = {vcards};
 </script>
+<script>{PAGER_JS}</script>
+<script>{FULLSCREEN_JS}</script>
+</script>
+
+</body>
+</html>
+"""
+
+
+def kiosk(lang: str) -> str:
+    """The app on its own page: no site chrome, the screen scaled to fill the viewport."""
+    s = dict(STRINGS[lang])
+    s["prefix"] = "../" if lang == "en" else "../../"
+    pre = s["prefix"]
+    canonical = f"{BASE}/app/" if lang == "en" else f"{BASE}/{lang}/app/"
+    home = "../" if lang == "en" else "../"
+
+    return f"""<!doctype html>
+<html lang="{s['lang']}" dir="{s['dir']}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{s['kiosk_title']}</title>
+<meta name="description" content="{s['kiosk_desc']}">
+<meta name="theme-color" content="#0b1524">
+<link rel="canonical" href="{canonical}">
+<link rel="alternate" hreflang="en" href="{BASE}/app/">
+<link rel="alternate" hreflang="da" href="{BASE}/da/app/">
+<link rel="alternate" hreflang="x-default" href="{BASE}/app/">
+<link rel="icon" type="image/png" sizes="32x32" href="{pre}favicon-32.png">
+<link rel="apple-touch-icon" href="{pre}apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{canonical}">
+<meta property="og:title" content="{s['kiosk_title']}">
+<meta property="og:description" content="{s['kiosk_desc']}">
+<meta property="og:image" content="{BASE}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="{pre}styles.css">
+</head>
+<body class="kiosk">
+
+<a class="kiosk-back" href="{home}">&#8592; {s['back_label']}</a>
+<button class="kiosk-fs btn btn-ghost btn-sm" type="button" id="go-fullscreen" aria-pressed="false" hidden>{ICON_EXPAND}<span>{s['fullscreen']}</span></button>
+
+<main class="kiosk-stage">
+{phone_block(s, indent="  ")}
+</main>
+
+<script>
+window.__FITS_VCARDS = {vcards_json()};
+</script>
+<script>{PAGER_JS}</script>
+<script>{FIT_JS}</script>
+<script>{FULLSCREEN_JS}</script>
 
 </body>
 </html>
@@ -534,7 +698,12 @@ def main() -> None:
     (SITE / "index.html").write_text(page("en"), encoding="utf-8")
     (SITE / "da").mkdir(exist_ok=True)
     (SITE / "da" / "index.html").write_text(page("da"), encoding="utf-8")
-    print(f"wrote {SITE/'index.html'} and {SITE/'da'/'index.html'}")
+    (SITE / "app").mkdir(exist_ok=True)
+    (SITE / "app" / "index.html").write_text(kiosk("en"), encoding="utf-8")
+    (SITE / "da" / "app").mkdir(exist_ok=True)
+    (SITE / "da" / "app" / "index.html").write_text(kiosk("da"), encoding="utf-8")
+    for rel in ("index.html", "da/index.html", "app/index.html", "da/app/index.html"):
+        print(f"wrote {SITE / rel}")
 
 
 if __name__ == "__main__":

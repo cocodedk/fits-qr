@@ -395,6 +395,83 @@ h1 em {
 }
 .dots button[aria-current="true"] { width: 22px; background: var(--teal); }
 
+/* ── Stage: the phone plus its fullscreen controls ──────────────────── */
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  justify-self: end;
+}
+.stage-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.stage-link {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-faint);
+  border-bottom: 1px solid transparent;
+}
+.stage-link:hover { color: var(--teal-light); border-bottom-color: currentColor; }
+
+/* The app screen is a fixed 390x844 box. Filling a viewport scales it as one block,
+   so the layout stays pixel-for-pixel what the phone shows instead of reflowing. */
+.phone:fullscreen {
+  transform: scale(var(--fit, 1));
+  transform-origin: center center;
+  box-shadow: none;
+  border-radius: 0;
+  background: none;
+  padding: 0;
+}
+.phone:fullscreen .phone-screen { border-radius: 0; }
+.phone::backdrop { background: #05090f; }
+
+/* ── Kiosk page: the app alone ──────────────────────────────────────── */
+body.kiosk {
+  background: #05090f;
+  overflow: hidden;
+}
+/* Fixed to the viewport so the scaled phone is centred against the real screen box,
+   with no page flow to shift it. */
+.kiosk-stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body.kiosk .phone {
+  transform: scale(var(--fit, 1));
+  transform-origin: center center;
+  justify-self: auto;
+}
+.kiosk-back,
+.kiosk-fs {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  z-index: 5;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.55;
+  transition: opacity 0.18s ease;
+}
+.kiosk-back { left: max(16px, env(safe-area-inset-left)); color: var(--ink); }
+.kiosk-fs { right: max(16px, env(safe-area-inset-right)); background: rgba(11, 21, 36, 0.7); }
+.kiosk-back:hover,
+.kiosk-fs:hover { opacity: 1; }
+
+/* Small screens: the app takes the whole display and the chrome gets out of the way. */
+@media (max-width: 520px) {
+  body.kiosk .phone { padding: 0; border-radius: 0; background: none; box-shadow: none; }
+  body.kiosk .phone-screen { border-radius: 0; }
+  .kiosk-back span, .kiosk-fs span { display: none; }
+}
+
 /* ── vCard payload readout — the signature panel ────────────────────── */
 .payload {
   border-top: 1px solid var(--hairline);
@@ -545,7 +622,7 @@ footer .spacer { margin-left: auto; }
   }
   .lede { max-width: 52ch; }
   .cta-row { justify-content: center; }
-  .phone { justify-self: center; }
+  .stage { justify-self: center; }
   .payload .shell { grid-template-columns: minmax(0, 1fr); gap: 26px; }
   .payload p { max-width: none; }
 }
@@ -553,9 +630,10 @@ footer .spacer { margin-left: auto; }
 /* Laptop-height viewports: scale the whole phone so the app screen keeps its exact
    390x844 proportions instead of being cropped. */
 @media (min-width: 1061px) and (max-height: 920px) {
-  .phone {
-    transform: scale(0.84);
-    transform-origin: center right;
+  .hero .phone {
+    transform: scale(0.82);
+    transform-origin: top center;
+    margin-bottom: -150px;
   }
   .hero { padding-top: 46px; }
 }
@@ -564,7 +642,7 @@ footer .spacer { margin-left: auto; }
   .shell { padding: 0 16px; }
   .hero { padding: 44px 0 30px; }
   /* The phone scales as one block so the app screen keeps its exact proportions. */
-  .phone {
+  .hero .phone {
     width: 390px;
     transform: scale(var(--phone-scale, 0.86));
     transform-origin: top center;
