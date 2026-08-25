@@ -228,27 +228,36 @@ window.__FITS_VCARDS = [
 
   // The vCards ship base64-encoded so that a scraper reading the raw HTML finds no
   // phone number or address to harvest. TextDecoder, not atob alone, because the
-  // payload is UTF-8 and the names carry ø and æ.
-  const decode = (s) =>
-    new TextDecoder().decode(Uint8Array.from(atob(s), (c) => c.charCodeAt(0)));
-  const VCARDS = (window.__FITS_VCARDS || []).map(decode);
+  // payload is UTF-8 and the names carry ø and æ. Decoding must never throw: a broken
+  // payload should cost the page its contact details, not its pager.
+  const decode = (s) => {
+    try {
+      return new TextDecoder().decode(Uint8Array.from(atob(s), (c) => c.charCodeAt(0)));
+    } catch (err) {
+      return "";
+    }
+  };
+  const source = Array.isArray(window.__FITS_VCARDS) ? window.__FITS_VCARDS : [];
+  const VCARDS = source.map(decode);
 
-  // Swap each card's masked phone, email and address for the real values.
+  // Swap each card's masked phone, email and address for the real values. ADR is
+  // structured (;;street;city;;postal;country); the row shows it the way a letter
+  // would be addressed. Anything that comes back empty leaves the mask in place,
+  // which is the honest fallback — a blank row would just look broken.
   const field = (vcard, key) => {
-    const line = vcard.split("\r\n").find((l) => l.startsWith(key));
+    const line = (vcard || "").split("\r\n").find((l) => l.startsWith(key));
     return line ? line.slice(line.indexOf(":") + 1) : "";
   };
-  // ADR is structured (;;street;city;;postal;country); the row shows it the way a
-  // letter would be addressed.
   const display = (vcard, key) => {
     const value = field(vcard, key);
     if (key !== "ADR") return value;
     const [, , street, city, , postal] = value.split(";");
-    return `${street}, ${postal} ${city}`;
+    return street ? `${street}, ${postal} ${city}` : "";
   };
   cards.forEach((card, i) => {
     card.querySelectorAll("[data-vc]").forEach((el) => {
-      el.textContent = display(VCARDS[i], el.dataset.vc);
+      const value = display(VCARDS[i], el.dataset.vc);
+      if (value) el.textContent = value;
     });
   });
 
@@ -258,7 +267,7 @@ window.__FITS_VCARDS = [
     track.style.transform = `translate3d(${-index * 100}%, 0, 0)`;
     dots.forEach((d, i) => d.setAttribute("aria-current", String(i === index)));
     cards.forEach((c, i) => c.toggleAttribute("inert", i !== index));
-    if (!out) return;
+    if (!out || !VCARDS[index]) return;
     out.innerHTML = VCARDS[index]
       .split("\r\n")
       .map((line) => {
