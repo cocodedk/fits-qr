@@ -1,0 +1,28 @@
+# Build output
+/build
+**/build/
+.gradle/
+.kotlin/
+
+# Local machine config — holds a machine-specific SDK path, never commit
+local.properties
+
+# Signing material — NEVER commit a keystore
+*.keystore
+*.jks
+
+# Android / IDE
+*.iml
+.idea/
+.DS_Store
+/captures
+.externalNativeBuild/
+.cxx/
+
+# Scratch
+/tmp/
+*.tmp
+
+# The seeded design-canvas payload embeds a ~2.5 MB editor bundle; the artboards
+# (design/*.dc.html) are the source and are committed instead.
+design/fits-contact-screen.html

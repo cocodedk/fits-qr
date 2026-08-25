@@ -1,0 +1,29 @@
+# FITS Contact App
+
+> A single-screen Android app for [fits.dk](https://fits.dk) (Framework for IT Security, an
+> AI-powered policy-automation product): three FITS contact cards on a circular horizontal
+> swipe pager, each showing a QR code — a vCard 3.0 generated on-device with ZXing — that any
+> phone camera saves straight into its contacts. No network access, no permissions.
+
+FITS Contact App is open-source (Apache-2.0), created by Babak Bandpey / Cocode.
+It's Kotlin + Jetpack Compose, minSdk 26, compileSdk 35, a single Gradle module built and
+run entirely from the CLI.
+
+## Docs
+
+- [README](https://github.com/cocodedk/fits-qr/blob/main/README.md): overview, build and
+  install
+- [Contributing](https://github.com/cocodedk/fits-qr/blob/main/CONTRIBUTING.md): setup, git
+  hooks, PR checklist
+
+## Project
+
+- [Website (English)](https://cocodedk.github.io/fits-qr/)
+- [Website (Danish)](https://cocodedk.github.io/fits-qr/da/)
+- [Source on GitHub](https://github.com/cocodedk/fits-qr)
+
+## Author
+
+- [Babak Bandpey — cocode.dk](https://cocode.dk)
+- [LinkedIn](https://linkedin.com/in/babakbandpey)
+- [GitHub](https://github.com/cocodedk)

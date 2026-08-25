@@ -1,0 +1,12 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 390, "h": 844, "title": "Swipe 1 — Bassil Salameh" },
+    { "file": "Babak.dc.html", "x": 510, "y": 0, "w": 390, "h": 844, "title": "Swipe 2 — Babak Bandpey" },
+    { "file": "Silas.dc.html", "x": 1020, "y": 0, "w": 390, "h": 844, "title": "Swipe 3 — Silas Stilling Jørgensen" },
+    { "file": "Card.dc.html", "x": 1530, "y": 0, "w": 390, "h": 844, "title": "Card component (shared)" }
+  ],
+  "annotations": [
+    { "id": "note-1", "x": 0, "y": -140, "w": 1400, "text": "FITS contact-QR app — one screen, three cards on a circular swipe (swiping past the third wraps back to the first).\nEvery QR is real and scannable: a vCard 3.0 with name, role, FITS org, email, phone, the Roskilde address and https://fits.dk.\nAll three pages share the Card component on the right, so an edit there hits every page." }
+  ],
+  "launch": { "view": "canvas" }
+}

@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FITS QR — three FITS contacts, one scan</title>
+<meta name="description" content="An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permissions, no tracking.">
+<meta name="author" content="Babak Bandpey">
+<meta name="theme-color" content="#0b1524">
+<link rel="canonical" href="https://cocodedk.github.io/fits-qr/">
+<link rel="alternate" hreflang="en" href="https://cocodedk.github.io/fits-qr/">
+<link rel="alternate" hreflang="da" href="https://cocodedk.github.io/fits-qr/da/">
+<link rel="alternate" hreflang="x-default" href="https://cocodedk.github.io/fits-qr/">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="180x180" href="favicon-180.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FITS QR">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="da_DK">
+<meta property="og:url" content="https://cocodedk.github.io/fits-qr/">
+<meta property="og:title" content="FITS QR — three FITS contacts, one scan">
+<meta property="og:description" content="An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permissions, no tracking.">
+<meta property="og:image" content="https://cocodedk.github.io/fits-qr/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The FITS QR app screen, showing a contact card and its QR code">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FITS QR — three FITS contacts, one scan">
+<meta name="twitter:description" content="An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permissions, no tracking.">
+<meta name="twitter:image" content="https://cocodedk.github.io/fits-qr/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "FITS QR",
+  "operatingSystem": "Android 8.0+",
+  "applicationCategory": "BusinessApplication",
+  "url": "https://cocodedk.github.io/fits-qr/",
+  "downloadUrl": "https://github.com/cocodedk/fits-qr/releases/latest",
+  "installUrl": "https://github.com/cocodedk/fits-qr/releases/latest",
+  "codeRepository": "https://github.com/cocodedk/fits-qr",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "isAccessibleForFree": true,
+  "inLanguage": ["en", "da"],
+  "description": "An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permissions, no tracking.",
+  "author": {"@type": "Person", "name": "Babak Bandpey", "url": "https://cocode.dk"},
+  "publisher": {"@type": "Organization", "name": "Cocode", "url": "https://cocode.dk"},
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
+  "about": {"@type": "Organization", "name": "FITS - Framework for IT Security", "url": "https://fits.dk"}
+}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="shell">
+    <a class="brand" href="">
+      <img src="fits-logo-white.png" width="336" height="261" alt="">
+      FITS QR
+    </a>
+    <nav>
+      <a class="lang-switch" href="da/" hreflang="da">Dansk</a>
+      <a class="btn btn-primary btn-sm" href="https://github.com/cocodedk/fits-qr/releases/latest"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5v11m0 0 4-4m-4 4-4-4M4.5 18.5h15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Download the APK</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="shell">
+      <div>
+        <p class="eyebrow">Open source · Android</p>
+        <h1>Three FITS contacts.<br><em>One scan each.</em></h1>
+        <p class="lede">A single screen, three swipeable cards. Each card's QR code carries a full vCard, so any phone camera saves the contact in one tap. The codes below are live — point your phone at your screen right now.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/cocodedk/fits-qr/releases/latest"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5v11m0 0 4-4m-4 4-4-4M4.5 18.5h15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Download the APK</a>
+          <a class="btn btn-ghost" href="https://github.com/cocodedk/fits-qr"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6.5 3.5 12 9 17.5M15 6.5 20.5 12 15 17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Read the source</a>
+        </div>
+        <p class="cta-note">Android 8.0 and up · ~3 MB · Apache-2.0 · built and signed by GitHub Actions</p>
+      </div>
+
+      <div class="phone">
+        <div class="phone-screen" id="screen" aria-label="The FITS QR app screen — swipe or use the arrow keys" tabindex="0" role="region">
+          <div class="screen-grid"></div>
+          <div class="app">
+            <img class="app-logo" src="fits-logo-white.png" width="336" height="261" alt="FITS">
+            <p class="app-tagline">AI-Powered Policy Automation</p>
+            <div class="pager">
+              <div class="track" id="track">
+        <article class="card" role="group" aria-roledescription="slide" aria-label="Bassil Salameh">
+          <div class="qr-wrap">
+            <div class="qr-glow"></div>
+            <div class="qr-card">
+              <img src="qr-bassil.png" width="568" height="568" alt="QR code holding Bassil Salameh's contact details" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <p class="scan-hint"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" stroke="#7FEAEF" stroke-width="1.5"/><path d="M7 9.5V7.5h2M17 9.5V7.5h-2M7 14.5v2h2M17 14.5v2h-2" stroke="#7FEAEF" stroke-width="1.5" stroke-linecap="round"/></svg>Scan to save the contact</p>
+          <div class="rows">
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="#00B2B8" stroke-width="1.6"/><path d="M4.8 20c0-3.6 3.2-5.6 7.2-5.6s7.2 2 7.2 5.6" stroke="#00B2B8" stroke-width="1.6" stroke-linecap="round"/></svg><div><div class="row-name">Bassil Salameh</div><div class="row-role">CEO</div></div></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="#00B2B8" stroke-width="1.6"/><path d="M3.5 7l8.5 6 8.5-6" stroke="#00B2B8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="row-value">fits@l7consulting.dk</div></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.2 3.5h3l1.6 4-2 1.4a11.4 11.4 0 0 0 5.3 5.3l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.2 5.7a2 2 0 0 1 2-2.2Z" stroke="#00B2B8" stroke-width="1.6" stroke-linejoin="round"/></svg><div class="row-value">+45 22 547 547</div></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21c4-4.2 6-7.3 6-10a6 6 0 1 0-12 0c0 2.7 2 5.8 6 10Z" stroke="#00B2B8" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10.6" r="2.2" stroke="#00B2B8" stroke-width="1.6"/></svg><div class="row-value">Københavnsvej 19B, 4000 Roskilde</div></div>
+            <div class="row-foot"><b>fits.dk</b><i></i>Danish product · European hosting</div>
+          </div>
+        </article>
+        <article class="card" role="group" aria-roledescription="slide" aria-label="Babak Bandpey">
+          <div class="qr-wrap">
+            <div class="qr-glow"></div>
+            <div class="qr-card">
+              <img src="qr-babak.png" width="568" height="568" alt="QR code holding Babak Bandpey's contact details" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <p class="scan-hint"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" stroke="#7FEAEF" stroke-width="1.5"/><path d="M7 9.5V7.5h2M17 9.5V7.5h-2M7 14.5v2h2M17 14.5v2h-2" stroke="#7FEAEF" stroke-width="1.5" stroke-linecap="round"/></svg>Scan to save the contact</p>
+          <div class="rows">
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="#00B2B8" stroke-width="1.6"/><path d="M4.8 20c0-3.6 3.2-5.6 7.2-5.6s7.2 2 7.2 5.6" stroke="#00B2B8" stroke-width="1.6" stroke-linecap="round"/></svg><div><div class="row-name">Babak Bandpey</div><div class="row-role">CTO</div></div></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="#00B2B8" stroke-width="1.6"/><path d="M3.5 7l8.5 6 8.5-6" stroke="#00B2B8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="row-value">bba@l7consulting.dk</div></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.2 3.5h3l1.6 4-2 1.4a11.4 11.4 0 0 0 5.3 5.3l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.2 5.7a2 2 0 0 1 2-2.2Z" stroke="#00B2B8" stroke-width="1.6" stroke-linejoin="round"/></svg><div class="row-value">+45 27 82 30 77</div></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21c4-4.2 6-7.3 6-10a6 6 0 1 0-12 0c0 2.7 2 5.8 6 10Z" stroke="#00B2B8" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10.6" r="2.2" stroke="#00B2B8" stroke-width="1.6"/></svg><div class="row-value">Københavnsvej 19B, 4000 Roskilde</div></div>
+            <div class="row-foot"><b>fits.dk</b><i></i>Danish product · European hosting</div>
+          </div>
+        </article>
+        <article class="card" role="group" aria-roledescription="slide" aria-label="Silas Stilling Jørgensen">
+          <div class="qr-wrap">
+            <div class="qr-glow"></div>
+            <div class="qr-card">
+              <img src="qr-silas.png" width="568" height="568" alt="QR code holding Silas Stilling Jørgensen's contact details" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <p class="scan-hint"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" stroke="#7FEAEF" stroke-width="1.5"/><path d="M7 9.5V7.5h2M17 9.5V7.5h-2M7 14.5v2h2M17 14.5v2h-2" stroke="#7FEAEF" stroke-width="1.5" stroke-linecap="round"/></svg>Scan to save the contact</p>
+          <div class="rows">
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="#00B2B8" stroke-width="1.6"/><path d="M4.8 20c0-3.6 3.2-5.6 7.2-5.6s7.2 2 7.2 5.6" stroke="#00B2B8" stroke-width="1.6" stroke-linecap="round"/></svg><div><div class="row-name">Silas Stilling Jørgensen</div><div class="row-role">Cybersecurity Developer</div></div></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="#00B2B8" stroke-width="1.6"/><path d="M3.5 7l8.5 6 8.5-6" stroke="#00B2B8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="row-value">ssj@l7consulting.dk</div></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.2 3.5h3l1.6 4-2 1.4a11.4 11.4 0 0 0 5.3 5.3l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.2 5.7a2 2 0 0 1 2-2.2Z" stroke="#00B2B8" stroke-width="1.6" stroke-linejoin="round"/></svg><div class="row-value">+45 61 26 89 99</div></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21c4-4.2 6-7.3 6-10a6 6 0 1 0-12 0c0 2.7 2 5.8 6 10Z" stroke="#00B2B8" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10.6" r="2.2" stroke="#00B2B8" stroke-width="1.6"/></svg><div class="row-value">Københavnsvej 19B, 4000 Roskilde</div></div>
+            <div class="row-foot"><b>fits.dk</b><i></i>Danish product · European hosting</div>
+          </div>
+        </article>
+              </div>
+            </div>
+            <div class="dots" id="dots" role="tablist" aria-label="Choose a contact card">
+          <button type="button" data-go="0" aria-current="true" aria-label="Bassil Salameh"></button>
+          <button type="button" data-go="1" aria-current="false" aria-label="Babak Bandpey"></button>
+          <button type="button" data-go="2" aria-current="false" aria-label="Silas Stilling Jørgensen"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="payload">
+    <div class="shell">
+      <div>
+        <h2>What the QR actually contains</h2>
+        <p>No shortlink, no redirect, no server in the middle. The code encodes a vCard 3.0 in plain UTF-8, generated on your device. This is the exact text the card on the left is showing right now.</p>
+      </div>
+      <pre class="vcard" id="vcard" aria-live="polite"><span class="k">BEGIN:</span><span class="v">VCARD</span>
+<span class="k">VERSION:</span><span class="v">3.0</span>
+<span class="k">N:</span><span class="v">Salameh;Bassil;;;</span>
+<span class="k">FN:</span><span class="v">Bassil Salameh</span>
+<span class="k">ORG:</span><span class="v">FITS - Framework for IT Security</span>
+<span class="k">TITLE:</span><span class="v">CEO</span>
+<span class="k">TEL;TYPE=WORK,VOICE:</span><span class="v">+45 22 547 547</span>
+<span class="k">EMAIL;TYPE=WORK,INTERNET:</span><span class="v">fits@l7consulting.dk</span>
+<span class="k">ADR;TYPE=WORK:</span><span class="v">;;Københavnsvej 19B;Roskilde;;4000;Denmark</span>
+<span class="k">URL:</span><span class="v">https://fits.dk</span>
+<span class="k">END:</span><span class="v">VCARD</span></pre>
+    </div>
+  </section>
+
+  <section class="facts">
+    <div class="shell">
+      <div class="fact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 20 7v6.2c0 4.6-3.3 8.1-8 9.3-4.7-1.2-8-4.7-8-9.3V7l8-3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.6 12.4l2.4 2.4 4.4-4.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>No permissions, no network</h3><p>The app asks for nothing and talks to nobody. QR codes are generated on-device with ZXing, so it works in airplane mode.</p></div>
+      <div class="fact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="3.5" width="7" height="7" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13.5" width="7" height="7" stroke="currentColor" stroke-width="1.6"/><path d="M13.5 13.5h3v3h-3zM18 18h2.5v2.5H18z" stroke="currentColor" stroke-width="1.6"/></svg><h3>A real vCard, not a link</h3><p>Name, role, organisation, work phone, work email, the Roskilde office address and fits.dk — all inside the code itself.</p></div>
+      <div class="fact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5v5.2l3.4 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Yours to read and rebuild</h3><p>Apache-2.0, Kotlin and Jetpack Compose. Change a contact in one file and the QR regenerates from it.</p></div>
+    </div>
+  </section>
+
+  <section class="install">
+    <div class="shell">
+      <h2>Install it</h2>
+      <p>The APK is built and signed by GitHub Actions on every release, so what you download is what the workflow produced from this source.</p>
+      <ol class="steps">
+        <li><h3>Download the APK</h3><p>Grab <code>FITS-QR.apk</code> from the latest release on GitHub.</p></li>
+        <li><h3>Allow the install</h3><p>Android will ask once whether to trust an app from outside the Play Store. This is the normal prompt for a sideloaded APK.</p></li>
+        <li><h3>Open and swipe</h3><p>Swipe left or right between the three cards. Hand your phone over, or let someone scan straight off your screen.</p></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell">
+    <span>© 2026 <a href="https://cocode.dk" target="_blank" rel="noreferrer">Cocode</a></span>
+    <span>Created by <a href="https://linkedin.com/in/babakbandpey" target="_blank" rel="noreferrer">Babak Bandpey</a></span>
+    <span class="spacer"><a href="https://fits.dk" target="_blank" rel="noreferrer">About FITS</a></span>
+    <span><a href="https://github.com/cocodedk/fits-qr">Source</a></span>
+    <span><a href="https://github.com/cocodedk/fits-qr/blob/main/LICENSE">Apache-2.0</a></span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const track = document.getElementById("track");
+  const screen = document.getElementById("screen");
+  const dots = [...document.querySelectorAll("#dots button")];
+  const out = document.getElementById("vcard");
+  const cards = [...track.children];
+  const VCARDS = {
+    0: "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Salameh;Bassil;;;\r\nFN:Bassil Salameh\r\nORG:FITS - Framework for IT Security\r\nTITLE:CEO\r\nTEL;TYPE=WORK,VOICE:+45 22 547 547\r\nEMAIL;TYPE=WORK,INTERNET:fits@l7consulting.dk\r\nADR;TYPE=WORK:;;Københavnsvej 19B;Roskilde;;4000;Denmark\r\nURL:https://fits.dk\r\nEND:VCARD",
+    1: "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Bandpey;Babak;;;\r\nFN:Babak Bandpey\r\nORG:FITS - Framework for IT Security\r\nTITLE:CTO\r\nTEL;TYPE=WORK,VOICE:+45 27 82 30 77\r\nEMAIL;TYPE=WORK,INTERNET:bba@l7consulting.dk\r\nADR;TYPE=WORK:;;Københavnsvej 19B;Roskilde;;4000;Denmark\r\nURL:https://fits.dk\r\nEND:VCARD",
+    2: "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Jørgensen;Silas Stilling;;;\r\nFN:Silas Stilling Jørgensen\r\nORG:FITS - Framework for IT Security\r\nTITLE:Cybersecurity Developer\r\nTEL;TYPE=WORK,VOICE:+45 61 26 89 99\r\nEMAIL;TYPE=WORK,INTERNET:ssj@l7consulting.dk\r\nADR;TYPE=WORK:;;Københavnsvej 19B;Roskilde;;4000;Denmark\r\nURL:https://fits.dk\r\nEND:VCARD"
+  };
+
+  let index = 0;
+  let width = () => track.getBoundingClientRect().width;
+
+  const paint = () => {
+    track.style.transform = `translate3d(${-index * 100}%, 0, 0)`;
+    dots.forEach((d, i) => d.setAttribute("aria-current", String(i === index)));
+    cards.forEach((c, i) => c.toggleAttribute("inert", i !== index));
+    out.innerHTML = VCARDS[index]
+      .split("\r\n")
+      .map((line) => {
+        const at = line.indexOf(":");
+        if (at < 0) return `<span class="k">${line}</span>`;
+        return `<span class="k">${line.slice(0, at + 1)}</span><span class="v">${line.slice(at + 1)}</span>`;
+      })
+      .join("\n");
+  };
+
+  const go = (next) => {
+    index = (next + cards.length) % cards.length;
+    paint();
+  };
+
+  dots.forEach((d) => d.addEventListener("click", () => go(Number(d.dataset.go))));
+
+  screen.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") { go(index - 1); e.preventDefault(); }
+    if (e.key === "ArrowRight") { go(index + 1); e.preventDefault(); }
+  });
+
+  // Drag / swipe, mirroring the app's pager: follow the finger, then settle.
+  let startX = null;
+  let delta = 0;
+  const down = (x) => { startX = x; delta = 0; track.classList.add("dragging"); };
+  const move = (x) => {
+    if (startX === null) return;
+    delta = x - startX;
+    track.style.transform = `translate3d(calc(${-index * 100}% + ${delta}px), 0, 0)`;
+  };
+  const up = () => {
+    if (startX === null) return;
+    track.classList.remove("dragging");
+    const threshold = Math.min(90, width() * 0.22);
+    if (delta <= -threshold) go(index + 1);
+    else if (delta >= threshold) go(index - 1);
+    else paint();
+    startX = null;
+  };
+
+  screen.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    down(e.clientX);
+    screen.setPointerCapture(e.pointerId);
+  });
+  screen.addEventListener("pointermove", (e) => move(e.clientX));
+  screen.addEventListener("pointerup", up);
+  screen.addEventListener("pointercancel", up);
+  screen.addEventListener("dragstart", (e) => e.preventDefault());
+
+  paint();
+})();
+</script>
+
+</body>
+</html>
