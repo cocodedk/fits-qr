@@ -143,7 +143,7 @@ STRINGS = {
         "cta_apk": "Download the APK",
         "cta_src": "Read the source",
         "cta_note": (
-            "Android 8.0 and up · ~3 MB · Apache-2.0 · built and signed by GitHub Actions"
+            "Android 8.0 and up · ~6.8 MB · Apache-2.0 · built and signed by GitHub Actions"
         ),
         "scan": "Scan to save the contact",
         "foot_note": "Danish product · European hosting",
@@ -208,7 +208,7 @@ STRINGS = {
         "cta_apk": "Hent APK-filen",
         "cta_src": "Læs kildekoden",
         "cta_note": (
-            "Android 8.0 og nyere · ~3 MB · Apache-2.0 · bygget og signeret af GitHub Actions"
+            "Android 8.0 og nyere · ~6.8 MB · Apache-2.0 · bygget og signeret af GitHub Actions"
         ),
         "scan": "Scan for at gemme kontakten",
         "foot_note": "Dansk produkt · Europæisk hosting",
