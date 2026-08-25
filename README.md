@@ -60,7 +60,7 @@ attached to the workflow run.
 
 ## Build it yourself
 
-Needs a JDK 17 and an Android SDK with platform 35.
+Needs a JDK 17 and an Android SDK with platform 37.
 
 ```bash
 ./gradlew assembleDebug

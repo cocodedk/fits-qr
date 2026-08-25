@@ -6,7 +6,7 @@
 > phone camera saves straight into its contacts. No network access, no permissions.
 
 FITS Contact App is open-source (Apache-2.0), created by Babak Bandpey / Cocode.
-It's Kotlin + Jetpack Compose, minSdk 26, compileSdk 35, a single Gradle module built and
+It's Kotlin + Jetpack Compose, minSdk 26, compileSdk 37, a single Gradle module built and
 run entirely from the CLI.
 
 ## Docs
