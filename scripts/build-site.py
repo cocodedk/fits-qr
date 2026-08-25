@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import base64
 import pathlib
+import struct
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = ROOT / "website"
@@ -303,14 +304,28 @@ STRINGS = {
 }
 
 
+def png_size(path: pathlib.Path) -> tuple[int, int]:
+    """Width and height straight out of the PNG's IHDR chunk.
+
+    A shorter vCard fits a lower QR version, so the codes are not all the same pixel
+    size — Babak's is 65 modules where the others are 69. Reading the real dimensions
+    keeps the img attributes honest whoever is in PEOPLE.
+    """
+    header = path.read_bytes()[:24]
+    if header[:8] != b"\x89PNG\r\n\x1a\n":
+        raise ValueError(f"{path} is not a PNG")
+    return struct.unpack(">II", header[16:24])
+
+
 def card_html(p: dict, s: dict) -> str:
     pre = s["prefix"]
     name = f"{p['first']} {p['last']}"
+    qr_w, qr_h = png_size(SITE / p["qr"])
     return f"""        <article class="card" role="group" aria-roledescription="slide" aria-label="{name}">
           <div class="qr-wrap">
             <div class="qr-glow"></div>
             <div class="qr-card">
-              <img src="{pre}{p['qr']}" width="568" height="568" alt="QR code holding {name}'s contact details" loading="lazy" decoding="async">
+              <img src="{pre}{p['qr']}" width="{qr_w}" height="{qr_h}" alt="QR code holding {name}'s contact details" loading="lazy" decoding="async">
             </div>
           </div>
           <p class="scan-hint">{ICON_SCAN}{s['scan']}</p>
