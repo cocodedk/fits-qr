@@ -47,7 +47,14 @@ android {
     }
     buildTypes {
         release {
-            isMinifyEnabled = false
+            // R8 shrinks and optimises the release build; the app has no reflection or
+            // JSON models, so proguard-rules.pro currently carries no app-specific rules.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
             if (hasSigning) signingConfig = signingConfigs.getByName("release")
         }
     }
