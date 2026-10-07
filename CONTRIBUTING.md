@@ -70,7 +70,7 @@ Never commit directly to `main` — always open a PR.
 
 ## PR Checklist
 
-- [ ] `./gradlew assembleDebug` succeeds.
+- [ ] `./gradlew assembleDebug testDebugUnitTest` succeeds.
 - [ ] Manually verified on a device/emulator: cards swipe, QR codes scan into a real
       contact with the correct name, role, phone, email and address.
 - [ ] Docs updated if behaviour changed.

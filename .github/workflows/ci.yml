@@ -26,4 +26,4 @@ jobs:
           cache: gradle
 
       - name: Build
-        run: ./gradlew assembleDebug --no-daemon
+        run: ./gradlew assembleDebug testDebugUnitTest --no-daemon

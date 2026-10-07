@@ -8,8 +8,8 @@ private const val SITE_URL = "https://cocodedk.github.io/fits-qr"
 /** Set to true once the app is live on F-Droid (`fdroid: live` in cocode-apps' apps.yml). */
 const val ON_FDROID = false
 
-/** The privacy policy page. Null until one is published; the About page then leaves its link out. */
-val PRIVACY_URL: String? = null
+/** The privacy policy page. When this is null, the About page leaves the privacy link out. */
+val PRIVACY_URL: String? = "https://cocodedk.github.io/fits-qr/privacy/"
 
 /**
  * Where an About link leads, or null when there is nowhere to send the person (no privacy

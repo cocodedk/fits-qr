@@ -31,6 +31,11 @@ class AboutLinksTest {
     }
 
     @Test
+    fun privacyLinkDefaultsToThePublishedPolicy() {
+        assertEquals("https://cocodedk.github.io/fits-qr/privacy/", aboutUrl(AboutLink.Privacy))
+    }
+
+    @Test
     fun privacyLinkIsLeftOutWhenThereIsNoPolicy() {
         assertNull(aboutUrl(AboutLink.Privacy, privacyUrl = null))
     }
@@ -43,7 +48,7 @@ class AboutLinksTest {
     }
 
     @Test
-    fun everyLinkButPrivacyAlwaysHasATarget() {
-        for (link in AboutLink.entries - AboutLink.Privacy) assertNotNull(link.name, aboutUrl(link))
+    fun everyLinkHasATargetByDefault() {
+        for (link in AboutLink.entries) assertNotNull(link.name, aboutUrl(link))
     }
 }
