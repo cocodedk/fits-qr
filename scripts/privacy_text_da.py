@@ -16,7 +16,9 @@ DA = {
     "sections": [
         ("Resumé", [
             "FITS indsamler ikke noget om dig. Appen kan ikke sende noget over internettet, fordi den "
-            "ikke har tilladelse til at bruge internettet. Den viser kun tre kontaktkort med "
+            "ikke har tilladelse til at bruge internettet. Siden &quot;Om FITS&quot; har knapper, der "
+            "åbner websider, men kun når du trykker på en, og det er din telefons browser, ikke appen, "
+            "der åbner siden. Appen viser kun tre kontaktkort med "
             "arbejdsoplysninger, hvert med en QR-kode (en firkantet stregkode, som et telefonkamera "
             "kan læse). Alt på kortene er bygget ind i appen. Appen har ingen konto, ingen "
             "analyseværktøjer (som måler, hvordan folk bruger en app) og ingen reklamer.",
@@ -37,8 +39,20 @@ DA = {
             "Ingen. Appen kontakter ingen servere. Det skyldes to ting. Appen har ikke Androids "
             "internettilladelse (<code>INTERNET</code>), og uden den lader Android ikke en app åbne en "
             "netforbindelse. Desuden indeholder appens kode ingen netværkskald og ingen webvisning (et "
-            "indbygget browservindue), og appen åbner aldrig et link.",
-            "Adressen fits.dk står kun som tekst inde i vCardet. QR-koderne tegnes på din telefon af "
+            "indbygget browservindue).",
+            "Siden &quot;Om FITS&quot; er det eneste sted, hvor en webside kan blive åbnet. Du kommer "
+            "til den med den lille &quot;i&quot;-knap i hjørnet øverst på kontaktkortene (for "
+            "skærmlæsere hedder knappen &quot;Om denne app&quot;). Siden har fem knapper, der åbner "
+            "en webside: &quot;Se den nyeste version&quot;, &quot;Læs privatlivspolitikken&quot;, "
+            "&quot;Åbn hjemmesiden&quot;, &quot;Se kildekoden på GitHub&quot; og &quot;Meld en fejl "
+            "på GitHub&quot;. Appen åbner kun en side, når du trykker på en af dem, og den henter ikke "
+            "siden selv. Den giver en fast webadresse videre til din telefon, og telefonens browser "
+            "åbner den. Appen kan stadig ikke oprette forbindelse til noget. De fem adresser fører til "
+            "projektets side med den nyeste udgave, denne privatlivspolitik, projektets hjemmeside, "
+            "dets kildekode og dets liste over meldte fejl, alle på GitHub eller GitHub Pages. Appen "
+            "tilføjer intet til dem: ingen kontaktoplysninger og intet om dig.",
+            "Adressen fits.dk står kun som almindelig tekst, på kortene og inde i vCardet, aldrig som "
+            "et link. QR-koderne tegnes på din telefon af "
             "ZXing, et bibliotek (færdig kode, som en app bygger på).",
         ]),
         ("Tilladelser", [
@@ -70,6 +84,9 @@ DA = {
             "GitHub Releases. Du henter den direkte fra GitHub eller gennem Obtainium, en app, der "
             "holder andre apps opdateret fra deres udgivelsessider. Den overførsel foregår mellem din "
             "telefon og GitHub.",
+            "Når du trykker på en knap på siden &quot;Om FITS&quot;, er det din browser, ikke appen, "
+            "der besøger GitHub eller GitHub Pages. GitHub kan se besøget, som en hjemmeside kan se "
+            "alle sine besøgende. Appen sender intet til GitHub.",
             "Denne hjemmeside ligger på GitHub Pages, GitHubs hosting af hjemmesider. Forsiden henter "
             "skrifttyper fra Google Fonts, Googles skrifttjeneste, så Google kan se det besøg. Denne "
             "privatlivsside henter intet fra andre hjemmesider. Ingen af hjemmesidens sider indeholder "

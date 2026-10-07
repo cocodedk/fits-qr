@@ -23,7 +23,9 @@ EN = {
     "sections": [
         ("Summary", [
             "FITS does not collect anything about you. It cannot send anything over the internet, "
-            "because it does not have permission to use the internet. The app only shows three work "
+            "because it does not have permission to use the internet. The About screen has buttons "
+            "that open web pages, but only when you tap one, and then your phone's browser opens "
+            "the page, not the app. The app only shows three work "
             "contact cards, each with a QR code (a square barcode that a phone camera reads). "
             "Everything on the cards is built into the app. The app has no account, no analytics "
             "(tools that measure how people use an app) and no ads.",
@@ -43,8 +45,20 @@ EN = {
             "None. The app does not contact any server. Two things make this so. The app does not have "
             "Android's internet permission (<code>INTERNET</code>), and without it Android does not let "
             "an app open a network connection. And the app's code has no network calls and no web view "
-            "(a built-in browser window), and it never opens a link.",
-            "The address fits.dk appears only as text inside the vCard. The QR codes are drawn on your "
+            "(a built-in browser window).",
+            "The About screen is the one place where a web page can open. You reach it with the small "
+            "&quot;i&quot; button in the top corner of the contact cards (screen readers call it "
+            "&quot;About this app&quot;). The screen is titled &quot;About FITS&quot; and has five "
+            "buttons that open a page: &quot;See the latest version&quot;, &quot;Read the privacy "
+            "policy&quot;, &quot;Open the website&quot;, &quot;See the source code on GitHub&quot; and "
+            "&quot;Report a problem on GitHub&quot;. The app opens a page only when you tap one of "
+            "them, and it does not load the page itself. It hands a fixed web address to your phone, "
+            "and your phone's browser opens it. The app itself still cannot connect to anything. The "
+            "five addresses lead to this project's page for its latest release, this privacy policy, "
+            "the project's website, its source code and its list of reported problems, all on GitHub "
+            "or GitHub Pages. The app adds nothing to them: no contact details and nothing about you.",
+            "The address fits.dk appears only as plain text, on the cards and inside the vCard, "
+            "never as a link. The QR codes are drawn on your "
             "phone by ZXing, a library (ready-made code that an app builds on).",
         ]),
         ("Permissions", [
@@ -74,6 +88,9 @@ EN = {
             "published on GitHub Releases. You download it from GitHub directly or through Obtainium, "
             "an app that keeps other apps up to date from their release pages. That download is "
             "between your phone and GitHub.",
+            "When you tap a button on the About screen, your browser, not the app, visits GitHub or "
+            "GitHub Pages. GitHub can see that visit, as any website sees its visitors. The app "
+            "sends it nothing.",
             "This website is hosted on GitHub Pages, GitHub's website hosting. The home page loads "
             "typefaces from Google Fonts, Google's font service, so Google can see that visit. This "
             "privacy page loads nothing from other sites. None of the site's pages contain analytics "
