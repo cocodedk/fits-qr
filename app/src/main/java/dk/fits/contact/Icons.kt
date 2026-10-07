@@ -68,3 +68,11 @@ fun ScanIcon(color: Color) = StrokeIcon(
     color,
     strokeWidth = 1.5f,
 )
+
+@Composable
+fun InfoIcon(color: Color) = StrokeIcon(
+    "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 11v5.5 M12 7.6v.1",
+    22,
+    color,
+    strokeWidth = 1.7f,
+)

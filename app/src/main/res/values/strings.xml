@@ -1,4 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FITS</string>
+
+    <!-- Contact screen -->
+    <string name="tagline">AI-Powered Policy Automation</string>
+    <string name="scan_hint">Scan to save the contact</string>
+    <string name="qr_description">QR code with the contact details of %1$s</string>
+    <string name="fits_product_note">Danish product · European hosting</string>
+    <string name="open_about">About this app</string>
+    <!-- Facts, not interface text: the web address and the organisation's full name -->
+    <string name="fits_domain" translatable="false">fits.dk</string>
+    <string name="fits_full_name" translatable="false">FITS — Framework for IT Security</string>
+
+    <!-- About screen -->
+    <string name="action_back">Back to the contact cards</string>
+    <string name="about_title">About FITS</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_check_updates">See the latest version</string>
+    <string name="about_update_hint">This opens the page with the newest version in your browser. The app never looks for updates on its own.</string>
+    <string name="about_what_title">What the app does</string>
+    <string name="about_what">FITS shows three contact cards, one at a time. Swipe left or right to see the next card. Each card has a QR code, which is a square picture that a phone camera can read. When someone points their camera at the code, their phone offers to save that person as a contact.</string>
+    <string name="about_privacy_title">Privacy</string>
+    <string name="about_privacy_permissions">The app asks for no permissions on your phone.</string>
+    <string name="about_privacy_network">The app does not use the internet. It makes the QR codes on the phone, and nothing is sent anywhere.</string>
+    <string name="about_privacy_scan">Scanning a code gives the scanning phone only that person\'s contact card.</string>
+    <string name="about_privacy_data">The app has no server and keeps no passwords or sign-in details. The only personal details in it are the three work contacts built into the app.</string>
+    <string name="about_privacy_link">Read the privacy policy</string>
+    <string name="about_links_title">Links</string>
+    <string name="about_links_hint">These links open in your browser.</string>
+    <string name="about_website">Open the website</string>
+    <string name="about_source">See the source code on GitHub</string>
+    <string name="about_report">Report a problem on GitHub</string>
+    <string name="link_no_browser">No app on the phone can open this link. Install a browser, then try again.</string>
+    <string name="about_credits_title">Credits and licenses</string>
+    <string name="credit_license">This app is free software, released under the Apache License 2.0 (Apache-2.0). You may use, read, change and share it under the terms of that license. The code is behind \"See the source code on GitHub\" above.</string>
+    <string name="credit_brand">The FITS name and logo belong to FITS. The license covers the code of this app, not the brand.</string>
+    <string name="credit_zxing">The app makes the QR codes with the ZXing library (Apache-2.0).</string>
+    <string name="credit_androidx">The app is built with AndroidX and Jetpack Compose (Apache-2.0).</string>
+    <string name="about_made_by">Made by Cocode (cocode.dk)</string>
+    <string name="about_published_for">This app is published by Cocode for FITS.</string>
 </resources>
