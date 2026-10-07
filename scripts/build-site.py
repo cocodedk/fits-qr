@@ -13,6 +13,9 @@ import base64
 import pathlib
 import struct
 
+import privacy_pages
+from privacy_common import WEBSITE
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = ROOT / "website"
 OWNER = "cocodedk"
@@ -25,7 +28,6 @@ APK = "FITS-QR.apk"
 ORG = "FITS - Framework for IT Security"
 STREET, CITY, POSTAL, COUNTRY = "Københavnsvej 19B", "Roskilde", "4000", "Denmark"
 ADDRESS = f"{STREET}, {POSTAL} {CITY}"
-WEBSITE = "https://fits.dk"
 
 PEOPLE = [
     {
@@ -788,7 +790,15 @@ def main() -> None:
     (SITE / "app" / "index.html").write_text(kiosk("en"), encoding="utf-8")
     (SITE / "da" / "app").mkdir(exist_ok=True)
     (SITE / "da" / "app" / "index.html").write_text(kiosk("da"), encoding="utf-8")
-    for rel in ("index.html", "da/index.html", "app/index.html", "da/app/index.html"):
+    written = ["index.html", "da/index.html", "app/index.html", "da/app/index.html"]
+    # The privacy policy, one folder deeper than the home page; see privacy_pages.py. A language
+    # is written once its text exists (the Danish text, privacy_text_da.py, comes with the Danish PR).
+    for lang, rel in (("en", "privacy/index.html"), ("da", "da/privacy/index.html")):
+        if lang in privacy_pages.TEXT:
+            (SITE / rel).parent.mkdir(parents=True, exist_ok=True)
+            write_page(SITE / rel, privacy_pages.page(lang, BASE))
+            written.append(rel)
+    for rel in written:
         print(f"wrote {SITE / rel}")
 
 
