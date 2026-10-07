@@ -87,7 +87,8 @@ sdk.dir=/path/to/your/android-sdk
 Everything a card shows lives in one list. Edit `contacts` in
 [`app/src/main/java/dk/fits/contact/Fits.kt`](app/src/main/java/dk/fits/contact/Fits.kt) — the QR
 regenerates from the same data, so there is nothing to keep in sync. Company-level facts (address,
-website, tagline) sit in the `Fits` object beside it.
+website) sit in the `Fits` object beside it; the tagline and every other line of interface text live
+in [`strings.xml`](app/src/main/res/values/strings.xml).
 
 After changing a contact, regenerate the website's copy of the cards and QR images so the site
 keeps matching the app:
