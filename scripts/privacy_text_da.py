@@ -61,14 +61,18 @@ DA = {
             "Appens manifestfil, filen hvor en app skriver, hvad den beder om, erklærer ingen "
             "tilladelser.",
             f"Én post i den færdige app er ikke vores: {PERMISSION}. Et Android-bibliotek tilføjer den "
-            "automatisk. Det er en privat tilladelse opkaldt efter appen, og kun appen selv kan bruge "
-            "den (Android kalder det beskyttelsesniveauet &quot;signature&quot;). Den giver ikke "
-            "adgang til noget på din telefon.",
+            "automatisk. Det er en privat tilladelse opkaldt efter appen. Android kalder dens "
+            "beskyttelsesniveau &quot;signature&quot;: kun apps, der er signeret med det samme "
+            "certifikat som FITS, kan få den. Den giver ikke adgang til noget på din telefon.",
         ]),
         ("Hvad der bliver på telefonen", [
             "Appen gemmer ikke noget selv: ingen indstillinger, ingen historik, ingen "
-            "database og ingen filer. Kortene er en del af selve appen. Appen husker kun, hvilket kort "
-            "der vises, så længe den er åben.",
+            "database og ingen filer. Kortene er en del af selve appen. Appen husker, hvilket kort "
+            "der vises, om siden &quot;Om FITS&quot; er åben, og hvilken knap på den side der ikke kunne "
+            "åbne en webside. Det overlader den til Androids funktion til at huske en apps tilstand, så "
+            "du lander samme sted, når du vender telefonen eller skifter tilbage til appen. Android "
+            "holder på det, så længe appen ligger blandt dine seneste apps, og appen skriver det ikke "
+            "til nogen fil.",
             "Androids sikkerhedskopiering (som kopierer appdata, når du tager backup af telefonen) er "
             "ikke slået fra for appen i manifestfilen (<code>allowBackup</code>). Da appen ikke gemmer "
             "data selv, har en sikkerhedskopi ingen data fra appen at tage med. Afinstallerer du "

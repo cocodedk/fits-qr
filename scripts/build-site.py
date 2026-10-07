@@ -239,7 +239,7 @@ STRINGS = {
         ),
         "eyebrow": "Open source · Android",
         "h1_a": "Tre FITS-kontakter.",
-        "h1_b": "Ét scan hver.",
+        "h1_b": "Ét scan pr. kontakt.",
         "lede": (
             "Tre kontaktkort på én skærm: stryg for at skifte mellem dem. Hvert kort har en "
             "QR-kode med et helt vCard, et standardformat til et kontaktkort. Scan den med et "
@@ -710,7 +710,6 @@ window.__FITS_VCARDS = {vcards};
 </script>
 <script>{PAGER_JS}</script>
 <script>{FULLSCREEN_JS}</script>
-</script>
 
 </body>
 </html>
