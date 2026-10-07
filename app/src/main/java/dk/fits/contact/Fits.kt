@@ -3,7 +3,6 @@ package dk.fits.contact
 /** Company-level facts, shared by every contact card. */
 object Fits {
     const val ORG = "FITS - Framework for IT Security"
-    const val TAGLINE = "AI-Powered Policy Automation"
     const val STREET = "Københavnsvej 19B"
     const val POSTAL_CODE = "4000"
     const val CITY = "Roskilde"
@@ -21,9 +20,6 @@ data class Contact(
     val phone: String,
 ) {
     val fullName: String get() = "$firstName $lastName"
-
-    /** The subtitle under the name: their role, or the company when they have none. */
-    val subtitle: String get() = role ?: "FITS — Framework for IT Security"
 
     /**
      * vCard 3.0 — the version both iOS and Android camera apps offer to save as a contact.

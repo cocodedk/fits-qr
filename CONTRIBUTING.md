@@ -26,10 +26,11 @@ export JAVA_HOME=<path to a JDK 17>
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-There is no automated test suite yet — verification today is a manual install and a visual
-check of the three contact cards and their QR codes. Contributions that add tests (unit tests
-for the vCard formatting, Compose UI tests for the pager) are welcome; there is no coverage
-gate to satisfy, just tests that actually exercise the change.
+The unit tests run with `./gradlew testDebugUnitTest`; today they cover the About page's link
+targets. Beyond that, verification is a manual install and a visual check of the three contact
+cards and their QR codes. Contributions that add tests (unit tests for the vCard formatting,
+Compose UI tests for the pager) are welcome; there is no coverage gate to satisfy, just tests
+that actually exercise the change.
 
 ## Coding Style
 
@@ -37,7 +38,8 @@ gate to satisfy, just tests that actually exercise the change.
   [`Fits.kt`](app/src/main/java/dk/fits/contact/Fits.kt), QR generation in
   [`QrCode.kt`](app/src/main/java/dk/fits/contact/QrCode.kt).
 - Models are immutable (`data class`).
-- No hardcoded user-facing strings where a resource or constant fits.
+- No hardcoded user-facing strings: interface text goes in `res/values/strings.xml`. People's
+  names, roles, phone numbers and addresses stay as data in `Fits.kt`.
 
 ## Local Git Setup
 
@@ -68,7 +70,7 @@ Never commit directly to `main` — always open a PR.
 
 ## PR Checklist
 
-- [ ] `./gradlew assembleDebug` succeeds.
+- [ ] `./gradlew assembleDebug testDebugUnitTest` succeeds.
 - [ ] Manually verified on a device/emulator: cards swipe, QR codes scan into a real
       contact with the correct name, role, phone, email and address.
 - [ ] Docs updated if behaviour changed.
