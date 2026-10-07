@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FITS QR — three FITS contacts, one scan</title>
-<meta name="description" content="An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permissions, no tracking.">
+<meta name="description" content="An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permission prompts, no tracking.">
 <meta name="author" content="Babak Bandpey">
 <meta name="theme-color" content="#0b1524">
 <link rel="canonical" href="https://cocodedk.github.io/fits-qr/">
@@ -20,14 +20,14 @@
 <meta property="og:locale:alternate" content="da_DK">
 <meta property="og:url" content="https://cocodedk.github.io/fits-qr/">
 <meta property="og:title" content="FITS QR — three FITS contacts, one scan">
-<meta property="og:description" content="An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permissions, no tracking.">
+<meta property="og:description" content="An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permission prompts, no tracking.">
 <meta property="og:image" content="https://cocodedk.github.io/fits-qr/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The FITS QR app screen, showing a contact card and its QR code">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="FITS QR — three FITS contacts, one scan">
-<meta name="twitter:description" content="An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permissions, no tracking.">
+<meta name="twitter:description" content="An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permission prompts, no tracking.">
 <meta name="twitter:image" content="https://cocodedk.github.io/fits-qr/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +47,7 @@
   "license": "https://www.apache.org/licenses/LICENSE-2.0",
   "isAccessibleForFree": true,
   "inLanguage": ["en", "da"],
-  "description": "An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permissions, no tracking.",
+  "description": "An open-source Android app for FITS. Swipe between three FITS contact cards and scan the QR code to save the contact — offline, no permission prompts, no tracking.",
   "author": {"@type": "Person", "name": "Babak Bandpey", "url": "https://cocode.dk"},
   "publisher": {"@type": "Organization", "name": "Cocode", "url": "https://cocode.dk"},
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
@@ -66,6 +66,8 @@
   <a class="brand" href="/fits-qr/" data-nav="home" aria-current="page"><img src="/fits-qr/img/icon.png" alt="" width="32" height="32">FITS</a>
   <a href="/fits-qr/#how" data-nav="how">How it works</a>
   <a href="/fits-qr/#install" data-nav="install">Install</a>
+  <a href="/fits-qr/privacy/" data-nav="privacy">Privacy</a>
+  <a href="/fits-qr/da/" hreflang="da" lang="da" data-nav="lang">Dansk</a>
   <a href="https://cocode.dk/" data-nav="more">More apps</a>
 </nav>
 <!-- cocode-apps:nav:end -->
@@ -79,12 +81,12 @@
       <div>
         <p class="eyebrow">Open source · Android</p>
         <h1>Three FITS contacts.<br><em>One scan each.</em></h1>
-        <p class="lede">A single screen, three swipeable cards. Each card's QR code carries a full vCard, so any phone camera saves the contact in one tap. The codes below are live — point your phone at your screen right now.</p>
+        <p class="lede">Three contact cards on one screen: swipe to move between them. Each card has a QR code that holds a full vCard, a standard contact card. Scan it with a compatible camera or QR scanner, then follow the prompt to save the contact. The codes below work: point your phone's camera at your screen now.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://github.com/cocodedk/fits-qr/releases/latest"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5v11m0 0 4-4m-4 4-4-4M4.5 18.5h15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Download the APK</a>
+          <a class="btn btn-primary" href="https://github.com/cocodedk/fits-qr/releases/latest"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5v11m0 0 4-4m-4 4-4-4M4.5 18.5h15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>View downloads on GitHub</a>
           <a class="btn btn-ghost" href="https://github.com/cocodedk/fits-qr"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6.5 3.5 12 9 17.5M15 6.5 20.5 12 15 17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Read the source</a>
         </div>
-        <p class="cta-note">Android 8.0 and up · ~6.8 MB · Apache-2.0 · built and signed by GitHub Actions</p>
+        <p class="cta-note">Android 8.0 and up · about 6.8 MB · Apache-2.0 · built and signed by GitHub Actions</p>
       </div>
 
       <div class="stage">
@@ -96,11 +98,11 @@
               <p class="app-tagline">AI-Powered Policy Automation</p>
               <div class="pager">
                 <div class="track" id="track">
-                <article class="card" role="group" aria-roledescription="slide" aria-label="Bassil Salameh">
+                <article class="card" role="group" aria-roledescription="contact card" aria-label="Bassil Salameh">
                   <div class="qr-wrap">
                     <div class="qr-glow"></div>
                     <div class="qr-card">
-                      <img src="qr-bassil.png" width="568" height="568" alt="QR code holding Bassil Salameh's contact details" loading="lazy" decoding="async">
+                      <img src="qr-bassil.png" width="568" height="568" alt="QR code with the contact details of Bassil Salameh" loading="lazy" decoding="async">
                     </div>
                   </div>
                   <p class="scan-hint"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" stroke="#7FEAEF" stroke-width="1.5"/><path d="M7 9.5V7.5h2M17 9.5V7.5h-2M7 14.5v2h2M17 14.5v2h-2" stroke="#7FEAEF" stroke-width="1.5" stroke-linecap="round"/></svg>Scan to save the contact</p>
@@ -112,11 +114,11 @@
                     <div class="row-foot"><b>fits.dk</b><i></i>Danish product · European hosting</div>
                   </div>
                 </article>
-                <article class="card" role="group" aria-roledescription="slide" aria-label="Babak Bandpey">
+                <article class="card" role="group" aria-roledescription="contact card" aria-label="Babak Bandpey">
                   <div class="qr-wrap">
                     <div class="qr-glow"></div>
                     <div class="qr-card">
-                      <img src="qr-babak.png" width="536" height="536" alt="QR code holding Babak Bandpey's contact details" loading="lazy" decoding="async">
+                      <img src="qr-babak.png" width="536" height="536" alt="QR code with the contact details of Babak Bandpey" loading="lazy" decoding="async">
                     </div>
                   </div>
                   <p class="scan-hint"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" stroke="#7FEAEF" stroke-width="1.5"/><path d="M7 9.5V7.5h2M17 9.5V7.5h-2M7 14.5v2h2M17 14.5v2h-2" stroke="#7FEAEF" stroke-width="1.5" stroke-linecap="round"/></svg>Scan to save the contact</p>
@@ -128,11 +130,11 @@
                     <div class="row-foot"><b>fits.dk</b><i></i>Danish product · European hosting</div>
                   </div>
                 </article>
-                <article class="card" role="group" aria-roledescription="slide" aria-label="Silas Stilling Jørgensen">
+                <article class="card" role="group" aria-roledescription="contact card" aria-label="Silas Stilling Jørgensen">
                   <div class="qr-wrap">
                     <div class="qr-glow"></div>
                     <div class="qr-card">
-                      <img src="qr-silas.png" width="568" height="568" alt="QR code holding Silas Stilling Jørgensen's contact details" loading="lazy" decoding="async">
+                      <img src="qr-silas.png" width="568" height="568" alt="QR code with the contact details of Silas Stilling Jørgensen" loading="lazy" decoding="async">
                     </div>
                   </div>
                   <p class="scan-hint"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" stroke="#7FEAEF" stroke-width="1.5"/><path d="M7 9.5V7.5h2M17 9.5V7.5h-2M7 14.5v2h2M17 14.5v2h-2" stroke="#7FEAEF" stroke-width="1.5" stroke-linecap="round"/></svg>Scan to save the contact</p>
@@ -166,7 +168,7 @@
     <div class="shell">
       <div>
         <h2>What the QR actually contains</h2>
-        <p>No shortlink, no redirect, no server in the middle. The code encodes a vCard 3.0 in plain UTF-8, generated on your device. This is the exact text the card on the left is showing right now.</p>
+        <p>No shortlink, no redirect, no server in the middle. The code holds a vCard 3.0 as plain UTF-8 text. The text box on this page shows what is inside the QR code of the contact card you have selected. The Android app makes its QR codes on your phone; this website shows prepared images with the same contact details.</p>
       </div>
       <pre class="vcard" id="vcard" aria-live="polite"><span class="k">BEGIN:</span><span class="v">VCARD</span>
 <span class="k">VERSION:</span><span class="v">3.0</span>
@@ -179,33 +181,33 @@
 <span class="k">ADR;TYPE=WORK:</span><span class="v">;;Københavnsvej ••B;Roskilde;;••••;Denmark</span>
 <span class="k">URL:</span><span class="v">https://fits.dk</span>
 <span class="k">END:</span><span class="v">VCARD</span></pre>
-      <noscript><p class="vcard-note">The digits above are hidden while JavaScript is off — this page masks phone numbers, email addresses and the house number so address harvesters cannot scrape them. Turn JavaScript on, or scan the QR code, to see the full vCard.</p></noscript>
+      <noscript><p class="vcard-note">While JavaScript is off, this page shows the phone numbers, email addresses and house number as dots. They are still public: the page's data and the QR images contain them. Turn JavaScript on, or scan a QR code, to see them in full.</p></noscript>
     </div>
   </section>
 
   <section class="facts">
     <div class="shell">
-      <div class="fact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 20 7v6.2c0 4.6-3.3 8.1-8 9.3-4.7-1.2-8-4.7-8-9.3V7l8-3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.6 12.4l2.4 2.4 4.4-4.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>No permissions, no network</h3><p>The app asks for nothing and talks to nobody. QR codes are generated on-device with ZXing, so it works in airplane mode.</p></div>
+      <div class="fact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 20 7v6.2c0 4.6-3.3 8.1-8 9.3-4.7-1.2-8-4.7-8-9.3V7l8-3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.6 12.4l2.4 2.4 4.4-4.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>No permission prompts, no network</h3><p>The app shows no permission prompts and has no internet access. It makes its QR codes on your phone with ZXing, so it works in airplane mode.</p></div>
       <div class="fact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="3.5" width="7" height="7" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13.5" width="7" height="7" stroke="currentColor" stroke-width="1.6"/><path d="M13.5 13.5h3v3h-3zM18 18h2.5v2.5H18z" stroke="currentColor" stroke-width="1.6"/></svg><h3>A real vCard, not a link</h3><p>Name, role, organisation, work phone, work email, the Roskilde office address and fits.dk — all inside the code itself.</p></div>
-      <div class="fact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5v5.2l3.4 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Yours to read and rebuild</h3><p>Apache-2.0, Kotlin and Jetpack Compose. Change a contact in one file and the QR regenerates from it.</p></div>
+      <div class="fact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5v5.2l3.4 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Yours to read and rebuild</h3><p>Apache-2.0, Kotlin and Jetpack Compose. Change a contact in one file and the app's QR codes follow.</p></div>
     </div>
   </section>
 
   <section class="get" id="install">
     <div class="shell">
       <h2>Install it</h2>
-      <p>The APK is built and signed by GitHub Actions on every release, so what you download is what the workflow produced from this source.</p>
+      <p>The APK, Android's installation file, is built and signed by GitHub Actions, GitHub's automated build service, on every release. What you download is what it produced from this source.</p>
       <!-- cocode-apps:install:start -->
 <ul class="install" role="list">
   <li><p class="fdroid-soon">Coming to F-Droid</p></li>
-  <li><a href="https://github.com/cocodedk/fits-qr/releases/latest/download/FITS-QR.apk">Download the APK from GitHub</a></li>
-  <li><a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/cocodedk/fits-qr">Auto-update the GitHub APK with Obtainium</a></li>
+  <li><a href="https://github.com/cocodedk/fits-qr/releases/latest/download/FITS-QR.apk">Download the Android installation file (APK) from GitHub</a></li>
+  <li><a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/cocodedk/fits-qr">Add the app to Obtainium, an app that keeps it up to date</a></li>
 </ul>
 <!-- cocode-apps:install:end -->
       <ol class="steps">
         <li><h3>Download the APK</h3><p>Grab <code>FITS-QR.apk</code> from the latest release on GitHub.</p></li>
-        <li><h3>Allow the install</h3><p>Android will ask once whether to trust an app from outside the Play Store. This is the normal prompt for a sideloaded APK.</p></li>
-        <li><h3>Open and swipe</h3><p>Swipe left or right between the three cards. Hand your phone over, or let someone scan straight off your screen.</p></li>
+        <li><h3>Open the file and allow the install</h3><p>Open the downloaded APK. If Android asks, allow your browser or file manager to install unknown apps, then confirm the installation.</p></li>
+        <li><h3>Open the app and swipe</h3><p>Swipe left or right between the three cards. Hand your phone over, or let someone scan straight off your screen.</p></li>
       </ol>
     </div>
   </section>
@@ -216,6 +218,7 @@
     <!-- cocode-apps:footer:start -->
 <footer class="cocode-footer">
   <a href="https://github.com/cocodedk/fits-qr">Source code</a> ·
+  <a href="/fits-qr/privacy/">Privacy</a> ·
   License: Apache-2.0 ·
   <a href="https://cocode.dk/">Made by Cocode (cocode.dk)</a>
 </footer>
@@ -362,7 +365,6 @@ window.__FITS_VCARDS = [
   });
   window.addEventListener("resize", fit);
 })();
-</script>
 </script>
 
 </body>

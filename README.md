@@ -6,8 +6,9 @@
 
 **Three FITS contacts. One scan each.**
 
-A single-screen Android app for [FITS](https://fits.dk) — swipe between three contact cards and
-let anyone scan the QR code to save the contact. Offline, no permissions, no tracking.
+A single-screen Android app for [FITS](https://fits.dk). Swipe between three contact cards and
+scan a QR code to save the contact. Offline, no permission prompts, no tracking. On your phone the
+app is called FITS.
 
 [![CI](https://github.com/cocodedk/fits-qr/actions/workflows/ci.yml/badge.svg)](https://github.com/cocodedk/fits-qr/actions/workflows/ci.yml)
 [![Release APK](https://github.com/cocodedk/fits-qr/actions/workflows/release-apk.yml/badge.svg)](https://github.com/cocodedk/fits-qr/actions/workflows/release-apk.yml)
@@ -19,12 +20,12 @@ let anyone scan the QR code to save the contact. Offline, no permissions, no tra
 
 <!-- cocode-apps:install:start -->
 - Coming to F-Droid
-- [Download the APK from GitHub](https://github.com/cocodedk/fits-qr/releases/latest/download/FITS-QR.apk)
-- [Auto-update the GitHub APK with Obtainium](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/cocodedk/fits-qr)
+- [Download the Android installation file (APK) from GitHub](https://github.com/cocodedk/fits-qr/releases/latest/download/FITS-QR.apk)
+- [Add the app to Obtainium, an app that keeps it up to date](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/cocodedk/fits-qr)
 <!-- cocode-apps:install:end -->
 
-Open the downloaded `FITS-QR.apk`. Android will ask once whether to trust an app from outside the
-Play Store — that is the normal prompt for a sideloaded APK. Requires Android 8.0 (API 26) or newer.
+Open the downloaded `FITS-QR.apk`. If Android asks, allow your browser or file manager to install
+unknown apps, then confirm the installation. Requires Android 8.0 (API 26) or newer.
 
 Every release APK is built and signed by GitHub Actions from this source, with
 [build provenance](https://docs.github.com/en/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds)
@@ -37,13 +38,14 @@ attached to the workflow run.
   [English](https://cocodedk.github.io/fits-qr/app/) ·
   [Dansk](https://cocodedk.github.io/fits-qr/da/app/)
 
-The site shows the same screen the app does, with the same working swipe and the same live QR
-codes — you can scan them straight off your monitor. The landing page's **Fullscreen** button
-blows the phone up to fill the browser; `/app/` is the same screen with no site chrome around
-it, which is what you want on a laptop at a stand or on a tablet propped on a desk.
+The site shows a preview of the app screen. You can swipe it, and you can scan its QR codes
+straight off your monitor. They are prepared images that hold the same contact details as the
+app's codes. The home page's **Fullscreen** button enlarges the phone to fill the browser. The
+`/app/` page shows the contact cards without the surrounding website navigation, which suits a
+laptop at a stand or a tablet on a desk.
 
-Both are scaled, never reflowed: the screen stays a 390×844 block so it keeps the exact layout
-the phone shows.
+The preview scales a fixed 390×844 layout. The Android app adjusts to the phone's available
+screen space.
 
 ## Features
 
@@ -56,16 +58,22 @@ pager — swiping past the last one wraps back to the first:
 | Babak Bandpey | CTO | bba@l7consulting.dk |
 | Silas Stilling Jørgensen | Cybersecurity Developer | ssj@l7consulting.dk |
 
-Each card renders a QR code holding a **vCard 3.0** — name, role, organisation, work phone,
-work email, the Roskilde office address and `https://fits.dk`. Any phone camera offers to save
-it as a contact. The codes are generated on-device with ZXing, so the app needs no network
-access and requests no permissions.
+Each card shows a QR code that holds a **vCard 3.0** (a standard contact-card format): name,
+role, organisation, work phone, work email, the Roskilde office address and `https://fits.dk`.
+A compatible camera or QR scanner can read the code and offer to save the contact. The app
+generates the codes on the device with ZXing, so it needs no network access and shows no
+permission prompts.
 
 ## Privacy
 
-The app asks for no permissions and makes no network calls: the QR codes are generated on the
-device, and nothing is sent over the network. Scanning a code gives the scanning phone that contact card. There is no server component and there are no stored credentials. The only personal
-details in the app are the three work contacts compiled into it.
+The app shows no permission prompts and makes no network calls: the QR codes are generated on
+the device, and the app sends nothing over the network. Scanning a code gives the scanning phone
+that one contact card. There is no server component and there are no stored credentials. The only
+personal details in the app are the three work contacts compiled into it.
+
+The About screen has buttons that open web pages (the latest release, the privacy policy, the
+website, the source code and the issue list) in your browser, only when you tap them. The app
+itself has no internet permission.
 
 ## Build
 
@@ -85,13 +93,14 @@ sdk.dir=/path/to/your/android-sdk
 ## Changing the contacts
 
 Everything a card shows lives in one list. Edit `contacts` in
-[`app/src/main/java/dk/fits/contact/Fits.kt`](app/src/main/java/dk/fits/contact/Fits.kt) — the QR
-regenerates from the same data, so there is nothing to keep in sync. Company-level facts (address,
-website) sit in the `Fits` object beside it; the tagline and every other line of interface text live
-in [`strings.xml`](app/src/main/res/values/strings.xml).
+[`app/src/main/java/dk/fits/contact/Fits.kt`](app/src/main/java/dk/fits/contact/Fits.kt). The app's
+QR codes are generated from the same data, so the app needs nothing else changed. Company-level
+facts (address, website) sit in the `Fits` object beside it; the tagline and every other line of
+interface text live in [`strings.xml`](app/src/main/res/values/strings.xml).
 
-After changing a contact, regenerate the website's copy of the cards and QR images so the site
-keeps matching the app:
+The website keeps its own copy of the contacts and shows prepared QR images. After editing
+`Fits.kt`, update the matching data in `scripts/build-site.py` and regenerate the affected QR
+images in `website/` yourself (no script in this repository makes them). Then update the pages:
 
 ```bash
 python3 scripts/build-site.py

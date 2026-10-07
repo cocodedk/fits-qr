@@ -12,19 +12,37 @@ const val ON_FDROID = false
 val PRIVACY_URL: String? = "https://cocodedk.github.io/fits-qr/privacy/"
 
 /**
+ * Languages the site has both a home page and a privacy page for, at `<site>/<code>/` and
+ * `<site>/<code>/privacy/` (the site lives under the /fits-qr/ sub-path of cocodedk.github.io).
+ * Every other language opens the English pages.
+ */
+private val SITE_LANGUAGES = setOf("da")
+
+/** [url] on the site in [language], or [url] itself when the site has no pages in that language. */
+private fun inLanguage(url: String, language: String): String =
+    if (language in SITE_LANGUAGES && url.startsWith("$SITE_URL/")) {
+        "$SITE_URL/$language/${url.removePrefix("$SITE_URL/")}"
+    } else {
+        url
+    }
+
+/**
  * Where an About link leads, or null when there is nowhere to send the person (no privacy
- * policy published yet). Plain strings only, so the unit tests need no Android.
+ * policy published yet). The website and privacy links follow [language] (a code such as "da"
+ * from the app's current locale) and open the English pages when the site has none in that
+ * language. Plain strings only, so the unit tests need no Android.
  */
 fun aboutUrl(
     link: AboutLink,
+    language: String = "en",
     onFdroid: Boolean = ON_FDROID,
     privacyUrl: String? = PRIVACY_URL,
     applicationId: String = BuildConfig.APPLICATION_ID,
 ): String? = when (link) {
     AboutLink.LatestVersion ->
         if (onFdroid) "https://f-droid.org/packages/$applicationId/" else "$REPO_URL/releases/latest"
-    AboutLink.Privacy -> privacyUrl
-    AboutLink.Website -> SITE_URL
+    AboutLink.Privacy -> privacyUrl?.let { inLanguage(it, language) }
+    AboutLink.Website -> if (language in SITE_LANGUAGES) "$SITE_URL/$language/" else SITE_URL
     AboutLink.Source -> REPO_URL
     AboutLink.Issues -> "$REPO_URL/issues"
 }

@@ -1,4 +1,4 @@
-# Contributing to FITS Contact App
+# Contributing to FITS QR
 
 A single-screen Android app for [fits.dk](https://fits.dk) — Kotlin + Jetpack Compose,
 built and run entirely from the CLI.

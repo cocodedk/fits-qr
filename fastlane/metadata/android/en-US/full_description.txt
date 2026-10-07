@@ -1,11 +1,11 @@
-FITS is a single-screen app for FITS (fits.dk). It shows three contact cards on a swipeable pager, each with a QR code. Anyone can scan the code with a phone camera and save the contact.
+FITS shows three FITS contact cards, each with a QR code. A QR code is a square picture that a phone camera can read. Point a compatible camera or QR scanner at a code, and it offers to save that person as a contact.
 
-The FITS logo and tagline stay fixed at the top. Below them are three cards: Bassil Salameh (CEO), Babak Bandpey (CTO) and Silas Stilling Jørgensen (Cybersecurity Developer). Swipe left or right to move between them; past the last card the pager wraps back to the first.
+The cards belong to Bassil Salameh (CEO), Babak Bandpey (CTO) and Silas Stilling Jørgensen (Cybersecurity Developer). Swipe left or right to move between them. After the last card you come back to the first. The FITS logo and tagline stay at the top.
 
-Each QR code holds a vCard 3.0 with the name, role, organisation, work phone, work email, the Roskilde office address and https://fits.dk. Any phone camera offers to save it as a contact.
+Each QR code holds the person's name, role, organisation, work phone, work email, the FITS office address in Roskilde and https://fits.dk, in a standard contact format (vCard 3.0). Whoever scans a code gets only that one card.
 
-Offline and private: the QR codes are generated on the device with ZXing, so the app needs no network access and requests no permissions.
+Private and offline: the app makes the QR codes on your phone with ZXing, a code library, so it needs no internet access and shows no permission prompts. The small "i" button in the top corner (named "About this app") opens a screen with the version, the privacy policy and links to the website and the source code. These links open in your browser, and only when you tap them.
 
-Free software under the Apache-2.0 licence. Requires Android 8.0 or newer. The FITS name and logo belong to FITS; the licence covers this app's source, not the brand.
+Free software under the Apache-2.0 license. Requires Android 8.0 or newer. The FITS name and logo belong to FITS; the license covers this app's source, not the brand.
 
 Source code: https://github.com/cocodedk/fits-qr

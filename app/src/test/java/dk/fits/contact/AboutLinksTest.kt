@@ -36,8 +36,47 @@ class AboutLinksTest {
     }
 
     @Test
+    fun englishOpensTheEnglishWebsiteAndPrivacyPages() {
+        assertEquals("https://cocodedk.github.io/fits-qr", aboutUrl(AboutLink.Website, "en"))
+        assertEquals("https://cocodedk.github.io/fits-qr/privacy/", aboutUrl(AboutLink.Privacy, "en"))
+    }
+
+    @Test
+    fun danishOpensTheDanishWebsiteAndPrivacyPages() {
+        assertEquals("https://cocodedk.github.io/fits-qr/da/", aboutUrl(AboutLink.Website, "da"))
+        assertEquals("https://cocodedk.github.io/fits-qr/da/privacy/", aboutUrl(AboutLink.Privacy, "da"))
+    }
+
+    @Test
+    fun aLanguageTheSiteLacksFallsBackToTheEnglishPages() {
+        for (language in listOf("fa", "fr")) {
+            assertEquals("https://cocodedk.github.io/fits-qr", aboutUrl(AboutLink.Website, language))
+            assertEquals("https://cocodedk.github.io/fits-qr/privacy/", aboutUrl(AboutLink.Privacy, language))
+        }
+    }
+
+    @Test
+    fun sourceIssuesAndLatestVersionDoNotFollowTheLanguage() {
+        for (language in listOf("en", "da", "fa")) {
+            assertEquals("https://github.com/cocodedk/fits-qr", aboutUrl(AboutLink.Source, language))
+            assertEquals("https://github.com/cocodedk/fits-qr/issues", aboutUrl(AboutLink.Issues, language))
+            assertEquals(
+                "https://github.com/cocodedk/fits-qr/releases/latest",
+                aboutUrl(AboutLink.LatestVersion, language, onFdroid = false),
+            )
+        }
+    }
+
+    @Test
+    fun anAddressOutsideTheSiteIsNeverRewritten() {
+        val url = "https://example.org/privacy/"
+        assertEquals(url, aboutUrl(AboutLink.Privacy, "da", privacyUrl = url))
+    }
+
+    @Test
     fun privacyLinkIsLeftOutWhenThereIsNoPolicy() {
         assertNull(aboutUrl(AboutLink.Privacy, privacyUrl = null))
+        assertNull(aboutUrl(AboutLink.Privacy, "da", privacyUrl = null))
     }
 
     @Test

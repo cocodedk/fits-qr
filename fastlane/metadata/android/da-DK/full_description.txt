@@ -1,0 +1,11 @@
+FITS viser tre FITS-kontaktkort, og hvert kort har en QR-kode. En QR-kode er et firkantet billede, som et telefonkamera kan læse. Peg et kompatibelt kamera eller en QR-scanner på koden, så tilbyder den at gemme personen som kontakt.
+
+Kortene tilhører Bassil Salameh (CEO), Babak Bandpey (CTO) og Silas Stilling Jørgensen (Cybersecurity Developer). Stryg til venstre eller højre for at skifte kort. Efter det sidste kort kommer du tilbage til det første. FITS-logoet og sloganet står fast øverst.
+
+Hver QR-kode indeholder personens navn, rolle, organisation, arbejdstelefon, arbejdsmail, FITS' kontoradresse i Roskilde og https://fits.dk i et standardformat til kontaktkort (vCard 3.0). Den, der scanner en kode, får kun det ene kort.
+
+Privat og offline: appen laver QR-koderne på din telefon med ZXing, et kodebibliotek, så den ikke bruger internettet og ikke viser nogen tilladelsesbeskeder. Den lille "i"-knap i hjørnet øverst (den hedder "Om denne app") åbner en side med versionen, privatlivspolitikken og links til hjemmesiden og kildekoden. Linkene åbner i din browser, og kun når du trykker på dem.
+
+Fri software under Apache-2.0-licensen. Kræver Android 8.0 eller nyere. Navnet og logoet FITS tilhører FITS. Licensen dækker appens kildekode, ikke brandet.
+
+Kildekode: https://github.com/cocodedk/fits-qr

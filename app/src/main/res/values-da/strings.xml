@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FITS</string>
+
+    <!-- Contact screen -->
+    <string name="tagline">AI-Powered Policy Automation</string>
+    <string name="scan_hint">Scan for at gemme kontakten</string>
+    <string name="qr_description">QR-kode med kontaktoplysningerne for %1$s</string>
+    <string name="fits_product_note">Dansk produkt · Europæisk hosting</string>
+    <string name="open_about">Om denne app</string>
+
+    <!-- About screen -->
+    <string name="action_back">Tilbage til kontaktkortene</string>
+    <string name="about_title">Om FITS</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_check_updates">Se den nyeste version</string>
+    <string name="about_update_hint">Det åbner siden med den nyeste version i din browser. Appen leder aldrig selv efter opdateringer.</string>
+    <string name="about_what_title">Hvad appen gør</string>
+    <string name="about_what">FITS viser tre kontaktkort, ét ad gangen. Stryg til venstre eller højre for at se det næste kort. Hvert kort har en QR-kode, som er et firkantet billede, et telefonkamera kan læse. Når nogen peger kameraet på koden, tilbyder deres telefon at gemme personen som kontakt.</string>
+    <string name="about_privacy_title">Privatliv</string>
+    <string name="about_privacy_permissions">Appen beder ikke om nogen tilladelser på din telefon.</string>
+    <string name="about_privacy_network">Appen bruger ikke internettet. Den laver QR-koderne på telefonen, og der bliver ikke sendt noget nogen steder hen.</string>
+    <string name="about_privacy_scan">Scanner man en kode, får den scannende telefon kun den ene persons kontaktkort.</string>
+    <string name="about_privacy_data">Appen har ingen server og gemmer ingen adgangskoder eller loginoplysninger. De eneste personoplysninger i den er de tre arbejdskontakter, der er bygget ind i appen.</string>
+    <string name="about_privacy_link">Læs privatlivspolitikken</string>
+    <string name="about_links_title">Links</string>
+    <string name="about_links_hint">Disse links åbner i din browser.</string>
+    <string name="about_website">Åbn hjemmesiden</string>
+    <string name="about_source">Se kildekoden på GitHub</string>
+    <string name="about_report">Meld en fejl på GitHub</string>
+    <string name="link_no_browser">Ingen app på telefonen kan åbne linket. Installér en browser, og prøv igen.</string>
+    <string name="about_credits_title">Tak og licenser</string>
+    <string name="credit_license">Appen er fri software udgivet under Apache License 2.0 (Apache-2.0). Du må bruge, læse, ændre og dele den på vilkårene i licensen. Koden finder du under \"Se kildekoden på GitHub\" ovenfor.</string>
+    <string name="credit_brand">Navnet og logoet FITS tilhører FITS. Licensen dækker appens kode, ikke brandet.</string>
+    <string name="credit_zxing">Appen laver QR-koderne med biblioteket ZXing (Apache-2.0).</string>
+    <string name="credit_androidx">Appen er bygget med AndroidX og Jetpack Compose (Apache-2.0).</string>
+    <string name="about_made_by">Lavet af Cocode (cocode.dk)</string>
+    <string name="about_published_for">Appen er udgivet af Cocode til FITS.</string>
+</resources>
