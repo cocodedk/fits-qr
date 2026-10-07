@@ -1,0 +1,1 @@
+Tre FITS-kontaktkort, hvert med en QR-kode, der gemmer kontakten
