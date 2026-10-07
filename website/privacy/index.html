@@ -45,32 +45,33 @@
 <main id="main" tabindex="-1" class="legal">
   <div class="shell">
     <h1>Privacy policy: FITS</h1>
-    <p class="meta">Effective <time datetime="2026-10-07">7 October 2026</time>. This policy covers the Android app FITS (package <code>dk.fits.contact</code>, called FITS QR on this website).</p>
+    <p class="meta">Effective <time datetime="2026-10-07">7 October 2026</time>. This policy covers the Android app FITS. The app's package name, its unique ID on Android, is <code>dk.fits.contact</code>. This website calls the app FITS QR.</p>
     <h2>Summary</h2>
-    <p>FITS collects nothing about you. The app shows three work contact cards, each with a QR code, and everything on them is built into the app. It has no permission to use the internet, so it cannot send anything anywhere. It has no account, no analytics and no ads.</p>
+    <p>FITS does not collect anything about you. It cannot send anything over the internet, because it does not have permission to use the internet. The app only shows three work contact cards, each with a QR code (a square barcode that a phone camera reads). Everything on the cards is built into the app. The app has no account, no analytics (tools that measure how people use an app) and no ads.</p>
     <h2>What is collected</h2>
-    <p>Nothing. The app has no sign-up, no input fields and no settings, so it never receives anything from you. It asks for no access to your contacts, camera, location, microphone or files.</p>
-    <p>The only personal details in the app are those of the three people on its cards: Bassil Salameh (CEO), Babak Bandpey (CTO) and Silas Stilling Jørgensen (Cybersecurity Developer). For each of them the app holds a work email address, a work phone number and the FITS office address in Roskilde. They are not collected from you. The app's publisher wrote them into the app, and each QR code carries them as a vCard together with fits.dk.</p>
-    <p>Whoever scans a code gets that card on their own phone. What the scanning phone's camera app does with it is up to that app, not this one.</p>
+    <p>Nothing. The app has no sign-up, no input fields and no settings, so you never give it anything. It does not ask for access to your contacts, camera, location, microphone or files.</p>
+    <p>The app does contain personal details of three people: Bassil Salameh (CEO), Babak Bandpey (CTO) and Silas Stilling Jørgensen (Cybersecurity Developer). For each of them it holds a work email address, a work phone number and the FITS office address in Roskilde. These details are not collected from you. The app's publisher wrote them into the app.</p>
+    <p>Each QR code contains these details as a vCard (a standard format for a contact card), together with fits.dk. Whoever scans a code gets that card on their own phone. What the camera app on that phone does with it is up to that app, not this one.</p>
     <h2>Servers the app contacts</h2>
-    <p>None. The app does not hold Android's internet permission (<code>INTERNET</code>), and without it Android does not let an app open a network connection. The code has no network calls and no web view, and it never opens a link. The address fits.dk appears only as text inside the vCard. The QR codes are drawn on the phone itself with the ZXing library.</p>
+    <p>None. The app does not contact any server. Two things make this so. The app does not have Android's internet permission (<code>INTERNET</code>), and without it Android does not let an app open a network connection. And the app's code has no network calls and no web view (a built-in browser window), and it never opens a link.</p>
+    <p>The address fits.dk appears only as text inside the vCard. The QR codes are drawn on your phone by ZXing, a library (ready-made code that an app builds on).</p>
     <h2>Permissions</h2>
-    <p>The app asks for none, and Android shows no permission prompt for it. Its own manifest declares no permission.</p>
-    <p>The finished app lists one entry that is not ours, <code>dk.fits.contact.DYNAMIC_RECEIVER_<wbr>NOT_EXPORTED_<wbr>PERMISSION</code>. An Android library adds it automatically. It is a private permission named after the app, of the kind only the app itself can use (protection level &quot;signature&quot;), and it gives no access to anything on your phone.</p>
+    <p>The app asks for none. A permission is something Android asks you to allow before an app may use, for example, your camera or location. FITS shows no permission prompt. Its manifest, the file where an app lists what it asks for, declares no permission.</p>
+    <p>One entry in the finished app is not ours: <code>dk.fits.contact.DYNAMIC_RECEIVER_<wbr>NOT_EXPORTED_<wbr>PERMISSION</code>. An Android library adds it automatically. It is a private permission named after the app, and only the app itself can use it (Android calls this protection level &quot;signature&quot;). It gives no access to anything on your phone.</p>
     <h2>What stays on the phone</h2>
-    <p>The app saves nothing of its own: no settings, no history, no database and no files. The cards are part of the app. Which card is showing is remembered only while the app is open.</p>
-    <p>Android's backup switch is left on in the manifest (<code>allowBackup</code>). Since the app saves no data of its own, a backup has none of the app's data to copy. Uninstalling the app removes the app and what Android keeps for it.</p>
+    <p>The app saves nothing of its own: no settings, no history, no database and no files. The cards are part of the app. The app remembers which card is showing only while it is open.</p>
+    <p>Android's backup feature (it copies app data when you back up your phone) is left on for this app in the manifest (<code>allowBackup</code>). Because the app saves no data of its own, a backup has none of the app's data to copy. If you uninstall the app, the app and what Android keeps for it are removed.</p>
     <h2>Third parties</h2>
-    <p>None receives anything from the app. The app has no analytics, advertising or crash-reporting library. It is built from AndroidX and Jetpack Compose (Google's libraries for Android apps) and ZXing, which draws the QR codes. With no internet permission, none of them can send anything out.</p>
-    <p>Getting the app is outside the app. The APK is built and signed by GitHub Actions and published on GitHub Releases, and you download it from GitHub directly or through Obtainium. That download is between your phone and GitHub.</p>
-    <p>This website is hosted on GitHub Pages. Its home page loads typefaces from Google Fonts, so Google can see that visit. This privacy page loads nothing from other sites, and none of the site's pages contain analytics code or code that sets cookies.</p>
+    <p>None receives anything from the app. The app has no analytics, advertising or crash-reporting library (crash reporting sends error reports to the developer). It is built from AndroidX and Jetpack Compose (Google's libraries for Android apps) and ZXing. None of them can send anything out, because the app has no internet permission.</p>
+    <p>Getting the app happens outside the app. The APK (the installation file for an Android app) is built and signed by GitHub Actions (GitHub's automated build service) and published on GitHub Releases. You download it from GitHub directly or through Obtainium, an app that keeps other apps up to date from their release pages. That download is between your phone and GitHub.</p>
+    <p>This website is hosted on GitHub Pages, GitHub's website hosting. The home page loads typefaces from Google Fonts, Google's font service, so Google can see that visit. This privacy page loads nothing from other sites. None of the site's pages contain analytics code or code that sets cookies (small files a website can leave in your browser).</p>
     <h2>Your rights</h2>
-    <p>The app holds no data about you, so there is nothing for you to access, correct or delete. Under the General Data Protection Regulation (GDPR) you may still ask the publisher what it holds about you, have it corrected or deleted, and complain to the Danish Data Protection Agency, <a href="https://www.datatilsynet.dk/english">Datatilsynet</a>.</p>
-    <p>If you are one of the three people on the cards and want your details changed or removed, write to the address under Contact. A change reaches a phone only when the app is updated on it.</p>
+    <p>The app holds no data about you, so there is nothing for you to look at, correct or delete. The EU's General Data Protection Regulation (GDPR) still lets you ask the publisher what it holds about you, have it corrected or deleted, and complain to the Danish Data Protection Agency, <a href="https://www.datatilsynet.dk/english">Datatilsynet</a>.</p>
+    <p>If you are one of the three people on the cards and want your details changed or removed, write to the address under Contact. A change reaches a phone only when the app is updated on that phone.</p>
     <h2>Contact</h2>
-    <p>FITS is published by Cocode (Babak Bandpey) for FITS (fits.dk). Write to <a href="mailto:bb@cocode.dk">bb@cocode.dk</a>, or open an issue on <a href="https://github.com/cocodedk/fits-qr/issues">GitHub</a>.</p>
+    <p>The app FITS is published by Cocode (Babak Bandpey) for the organisation FITS (fits.dk). Write to <a href="mailto:bb@cocode.dk">bb@cocode.dk</a>, or open an issue on <a href="https://github.com/cocodedk/fits-qr/issues">GitHub</a> (a public message on the project's page).</p>
     <h2>Changes</h2>
-    <p>If the policy changes, the date at the top changes and the change is described here. Older versions are in the project's history on GitHub.</p>
+    <p>If the policy changes, we change the date at the top and describe the change here. Older versions are in the project's history on GitHub.</p>
     <p>7 October 2026: first published.</p>
     <p class="back"><a href="../">Back to the front page</a></p>
   </div>
