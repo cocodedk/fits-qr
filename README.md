@@ -13,9 +13,22 @@ let anyone scan the QR code to save the contact. Offline, no permissions, no tra
 [![Release APK](https://github.com/cocodedk/fits-qr/actions/workflows/release-apk.yml/badge.svg)](https://github.com/cocodedk/fits-qr/actions/workflows/release-apk.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-00B2B8)](LICENSE)
 
-**[⬇ Download the APK](https://github.com/cocodedk/fits-qr/releases/latest)**
-
 </div>
+
+## Install
+
+<!-- cocode-apps:install:start -->
+- Coming to F-Droid
+- [Download the APK from GitHub](https://github.com/cocodedk/fits-qr/releases/latest/download/FITS-QR.apk)
+- [Auto-update the GitHub APK with Obtainium](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/cocodedk/fits-qr)
+<!-- cocode-apps:install:end -->
+
+Open the downloaded `FITS-QR.apk`. Android will ask once whether to trust an app from outside the
+Play Store — that is the normal prompt for a sideloaded APK. Requires Android 8.0 (API 26) or newer.
+
+Every release APK is built and signed by GitHub Actions from this source, with
+[build provenance](https://docs.github.com/en/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds)
+attached to the workflow run.
 
 ## Website
 
@@ -32,7 +45,7 @@ it, which is what you want on a laptop at a stand or on a tablet propped on a de
 Both are scaled, never reflowed: the screen stays a 390×844 block so it keeps the exact layout
 the phone shows.
 
-## What it does
+## Features
 
 The FITS logo and tagline stay fixed at the top. Below them sit three cards on a circular
 pager — swiping past the last one wraps back to the first:
@@ -48,17 +61,13 @@ work email, the Roskilde office address and `https://fits.dk`. Any phone camera 
 it as a contact. The codes are generated on-device with ZXing, so the app needs no network
 access and requests no permissions.
 
-## Install
+## Privacy
 
-Download `FITS-QR.apk` from the [latest release](https://github.com/cocodedk/fits-qr/releases/latest)
-and open it. Android will ask once whether to trust an app from outside the Play Store — that is
-the normal prompt for a sideloaded APK. Requires Android 8.0 (API 26) or newer.
+The app asks for no permissions and makes no network calls: the QR codes are generated on the
+device, and no data leaves it. There is no server component and there are no stored credentials. The only personal
+details in the app are the three work contacts compiled into it.
 
-Every release APK is built and signed by GitHub Actions from this source, with
-[build provenance](https://docs.github.com/en/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds)
-attached to the workflow run.
-
-## Build it yourself
+## Build
 
 Needs a JDK 17 and an Android SDK with platform 37.
 

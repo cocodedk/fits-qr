@@ -49,19 +49,18 @@ button:focus-visible {
 
 /* ── Header ─────────────────────────────────────────────────────────── */
 .masthead {
-  position: sticky;
-  top: 0;
-  z-index: 20;
   background: rgba(11, 21, 36, 0.82);
-  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--hairline);
 }
 .masthead .shell {
+  position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 20px;
+  gap: 0 20px;
   min-height: 64px;
 }
+/* The shared navigation (css/cocode-nav.css) lays the links out; this gives them the site's look. */
 .brand {
   display: flex;
   align-items: center;
@@ -71,22 +70,34 @@ button:focus-visible {
   font-weight: 700;
   letter-spacing: 0.02em;
 }
-.brand img { width: 30px; height: auto; display: block; }
-.masthead nav {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.brand img { width: 30px; height: 30px; display: block; border-radius: 7px; }
+.masthead .cocode-nav { flex: 1 1 auto; gap: 0 4px; }
+.masthead .cocode-nav a { padding: 0 10px; font-size: 14.5px; font-weight: 500; color: var(--ink-dim); }
+.masthead .cocode-nav a:hover { color: var(--ink); }
+.masthead .cocode-nav .brand { padding: 0; font-size: 16px; font-weight: 700; color: var(--ink); }
 .lang-switch {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--ink-dim);
-  padding: 6px 10px;
+  padding: 0 14px;
   border: 1px solid var(--hairline);
   border-radius: 999px;
 }
+/* Phones: the language switch sits on the name's row, top right, so the links keep their own row. */
+@media (max-width: 47.99em) {
+  .lang-switch { position: absolute; top: 10px; right: 16px; }
+  .masthead .cocode-nav .brand + a { margin-left: -10px; }
+}
+/* Wide screens: one row, kept in view while scrolling. */
+@media (min-width: 48em) {
+  .masthead { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px); }
+}
+section[id] { scroll-margin-top: 72px; }
+main:focus { outline: 0; }
 .lang-switch:hover { color: var(--ink); border-color: var(--teal); }
 
 .btn {
@@ -549,21 +560,53 @@ body.kiosk .phone {
 .fact p { margin: 0; font-size: 14.5px; color: var(--ink-dim); text-wrap: pretty; }
 
 /* ── Install steps — a real sequence, so it is numbered ─────────────── */
-.install {
+.get {
   padding: 8px 0 72px;
 }
-.install h2 {
+.get h2 {
   font-family: var(--display);
   font-size: clamp(1.7rem, 3vw, 2.3rem);
   font-weight: 800;
   letter-spacing: -0.025em;
   margin: 0 0 6px;
 }
-.install > .shell > p {
+.get > .shell > p {
   color: var(--ink-dim);
-  margin: 0 0 32px;
+  margin: 0 0 20px;
   max-width: 54ch;
 }
+/* The shared cocode-apps install block: F-Droid first, then the APK (the main button), then Obtainium. */
+.install {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 22px;
+}
+.install a,
+.install .fdroid-soon {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.install .fdroid-soon {
+  padding: 0 20px;
+  border: 1px dashed var(--ink-faint);
+  border-radius: 999px;
+  color: var(--ink-dim);
+}
+.install li:nth-child(2) a {
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--teal);
+  color: #04222a;
+}
+.install li:nth-child(2) a:hover { background: var(--teal-light); color: #04222a; }
 .steps {
   list-style: none;
   counter-reset: step;
@@ -606,19 +649,23 @@ body.kiosk .phone {
 }
 
 /* ── Footer ─────────────────────────────────────────────────────────── */
-footer {
+.site-foot {
   border-top: 1px solid var(--hairline);
-  padding: 30px 0 40px;
+  padding: 22px 0 32px;
   font-size: 14px;
   color: var(--ink-faint);
 }
-footer .shell {
+.site-foot .shell {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 22px;
+  gap: 4px 22px;
   align-items: center;
 }
-footer .spacer { margin-left: auto; }
+.site-foot .cocode-footer { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin-right: auto; }
+.site-foot .cocode-footer a { padding: 0; color: var(--ink-dim); }
+.site-foot .cocode-footer a:hover,
+.site-foot .foot-about:hover { color: var(--ink); }
+.site-foot .foot-about { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-dim); }
 
 /* ── Persian/RTL and Danish share the LTR layout; Danish needs nothing ── */
 
@@ -658,7 +705,6 @@ footer .spacer { margin-left: auto; }
     transform-origin: top center;
     margin-bottom: calc(844px * (var(--phone-scale, 0.86) - 1));
   }
-  .masthead .btn span { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

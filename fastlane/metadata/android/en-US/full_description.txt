@@ -1,0 +1,11 @@
+FITS is a single-screen app for FITS (fits.dk). It shows three contact cards on a swipeable pager, each with a QR code. Anyone can scan the code with a phone camera and save the contact.
+
+The FITS logo and tagline stay fixed at the top. Below them are three cards: Bassil Salameh (CEO), Babak Bandpey (CTO) and Silas Stilling Jørgensen (Cybersecurity Developer). Swipe left or right to move between them; past the last card the pager wraps back to the first.
+
+Each QR code holds a vCard 3.0 with the name, role, organisation, work phone, work email, the Roskilde office address and https://fits.dk. Any phone camera offers to save it as a contact.
+
+Offline and private: the QR codes are generated on the device with ZXing, so the app needs no network access and requests no permissions.
+
+Free software under the Apache-2.0 licence. Requires Android 8.0 or newer. The FITS name and logo belong to FITS; the licence covers this app's source, not the brand.
+
+Source code: https://github.com/cocodedk/fits-qr

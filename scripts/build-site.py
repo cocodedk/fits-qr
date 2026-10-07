@@ -208,10 +208,7 @@ STRINGS = {
              "Swipe left or right between the three cards. Hand your phone over, or let "
              "someone scan straight off your screen."),
         ],
-        "footer_by": "Created by",
         "footer_about": "About FITS",
-        "footer_src": "Source",
-        "footer_license": "Apache-2.0",
         "fullscreen": "Fullscreen",
         "exit_fullscreen": "Leave fullscreen",
         "kiosk_link": "Open the app on its own page",
@@ -287,10 +284,7 @@ STRINGS = {
              "Skift mellem de tre kort med en swipe til højre eller venstre. Ræk telefonen "
              "frem, eller lad folk scanne direkte fra skærmen."),
         ],
-        "footer_by": "Udviklet af",
         "footer_about": "Om FITS",
-        "footer_src": "Kildekode",
-        "footer_license": "Apache-2.0",
         "fullscreen": "Fuldskærm",
         "exit_fullscreen": "Forlad fuldskærm",
         "kiosk_link": "Åbn appen på sin egen side",
@@ -567,7 +561,6 @@ def page(lang: str) -> str:
     steps = "\n".join(
         f"""        <li><h3>{title}</h3><p>{body}</p></li>""" for title, body in s["steps"]
     )
-    year = 2026
     phone = phone_block(s, indent="        ")
     vcards = vcards_json()
     app_href = "app/" if lang == "en" else "app/"
@@ -633,18 +626,12 @@ def page(lang: str) -> str:
 
 <header class="masthead">
   <div class="shell">
-    <a class="brand" href="{pre if lang != 'en' else ''}">
-      <img src="{pre}fits-logo-white.png" width="336" height="261" alt="">
-      FITS QR
-    </a>
-    <nav>
-      <a class="lang-switch" href="{s['other_href']}" hreflang="{'da' if lang == 'en' else 'en'}">{s['other_label']}</a>
-      <a class="btn btn-primary btn-sm" href="{RELEASES}">{ICON_DOWNLOAD}<span>{s['cta_apk']}</span></a>
-    </nav>
+    <!-- cocode-apps:nav:start --><!-- cocode-apps:nav:end -->
+    <a class="lang-switch" href="{s['other_href']}" hreflang="{'da' if lang == 'en' else 'en'}">{s['other_label']}</a>
   </div>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
   <section class="hero">
     <div class="shell">
       <div>
@@ -668,7 +655,7 @@ def page(lang: str) -> str:
     </div>
   </section>
 
-  <section class="payload">
+  <section class="payload" id="how">
     <div class="shell">
       <div>
         <h2>{s['payload_h2']}</h2>
@@ -685,10 +672,11 @@ def page(lang: str) -> str:
     </div>
   </section>
 
-  <section class="install">
+  <section class="get" id="install">
     <div class="shell">
       <h2>{s['install_h2']}</h2>
       <p>{s['install_p']}</p>
+      <!-- cocode-apps:install:start --><!-- cocode-apps:install:end -->
       <ol class="steps">
 {steps}
       </ol>
@@ -696,15 +684,12 @@ def page(lang: str) -> str:
   </section>
 </main>
 
-<footer>
+<div class="site-foot">
   <div class="shell">
-    <span>© {year} <a href="https://cocode.dk" target="_blank" rel="noreferrer">Cocode</a></span>
-    <span>{s['footer_by']} <a href="https://linkedin.com/in/babakbandpey" target="_blank" rel="noreferrer">Babak Bandpey</a></span>
-    <span class="spacer"><a href="{WEBSITE}" target="_blank" rel="noreferrer">{s['footer_about']}</a></span>
-    <span><a href="{REPO_URL}">{s['footer_src']}</a></span>
-    <span><a href="{REPO_URL}/blob/main/LICENSE">{s['footer_license']}</a></span>
+    <!-- cocode-apps:footer:start --><!-- cocode-apps:footer:end -->
+    <a class="foot-about" href="{WEBSITE}" target="_blank" rel="noreferrer">{s['footer_about']}</a>
   </div>
-</footer>
+</div>
 
 <script>
 window.__FITS_VCARDS = {vcards};
@@ -777,10 +762,28 @@ window.__FITS_VCARDS = {vcards_json()};
 """
 
 
+def keep_blocks(html: str, path: pathlib.Path) -> str:
+    """Carry over the cocode-apps blocks (navigation, install, footer) that `python3 -m tools.render`
+    wrote into the page on disk, so regenerating the page does not empty them."""
+    if not path.is_file():
+        return html
+    old = path.read_text(encoding="utf-8")
+    for name in ("nav", "install", "footer"):
+        start, end = f"<!-- cocode-apps:{name}:start -->", f"<!-- cocode-apps:{name}:end -->"
+        a, b = old.find(start), old.find(end)
+        if 0 <= a < b and html.count(start) == 1 and html.count(end) == 1:
+            html = html.replace(f"{start}{end}", old[a:b + len(end)])
+    return html
+
+
+def write_page(path: pathlib.Path, html: str) -> None:
+    path.write_text(keep_blocks(html, path), encoding="utf-8")
+
+
 def main() -> None:
-    (SITE / "index.html").write_text(page("en"), encoding="utf-8")
+    write_page(SITE / "index.html", page("en"))
     (SITE / "da").mkdir(exist_ok=True)
-    (SITE / "da" / "index.html").write_text(page("da"), encoding="utf-8")
+    write_page(SITE / "da" / "index.html", page("da"))
     (SITE / "app").mkdir(exist_ok=True)
     (SITE / "app" / "index.html").write_text(kiosk("en"), encoding="utf-8")
     (SITE / "da" / "app").mkdir(exist_ok=True)
