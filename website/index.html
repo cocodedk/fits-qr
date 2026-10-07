@@ -59,18 +59,21 @@
 
 <header class="masthead">
   <div class="shell">
-    <a class="brand" href="">
-      <img src="fits-logo-white.png" width="336" height="261" alt="">
-      FITS QR
-    </a>
-    <nav>
-      <a class="lang-switch" href="da/" hreflang="da">Dansk</a>
-      <a class="btn btn-primary btn-sm" href="https://github.com/cocodedk/fits-qr/releases/latest"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5v11m0 0 4-4m-4 4-4-4M4.5 18.5h15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Download the APK</span></a>
-    </nav>
+    <!-- cocode-apps:nav:start -->
+<link rel="stylesheet" href="/fits-qr/css/cocode-nav.css">
+<a class="skip" href="#main">Skip to content</a>
+<nav class="cocode-nav" aria-label="FITS">
+  <a class="brand" href="/fits-qr/" data-nav="home" aria-current="page"><img src="/fits-qr/img/icon.png" alt="" width="32" height="32">FITS</a>
+  <a href="/fits-qr/#how" data-nav="how">How it works</a>
+  <a href="/fits-qr/#install" data-nav="install">Install</a>
+  <a href="https://cocode.dk/" data-nav="more">More apps</a>
+</nav>
+<!-- cocode-apps:nav:end -->
+    <a class="lang-switch" href="da/" hreflang="da">Dansk</a>
   </div>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
   <section class="hero">
     <div class="shell">
       <div>
@@ -159,7 +162,7 @@
     </div>
   </section>
 
-  <section class="payload">
+  <section class="payload" id="how">
     <div class="shell">
       <div>
         <h2>What the QR actually contains</h2>
@@ -188,10 +191,17 @@
     </div>
   </section>
 
-  <section class="install">
+  <section class="get" id="install">
     <div class="shell">
       <h2>Install it</h2>
       <p>The APK is built and signed by GitHub Actions on every release, so what you download is what the workflow produced from this source.</p>
+      <!-- cocode-apps:install:start -->
+<ul class="install" role="list">
+  <li><p class="fdroid-soon">Coming to F-Droid</p></li>
+  <li><a href="https://github.com/cocodedk/fits-qr/releases/latest/download/FITS-QR.apk">Download the APK from GitHub</a></li>
+  <li><a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/cocodedk/fits-qr">Auto-update the GitHub APK with Obtainium</a></li>
+</ul>
+<!-- cocode-apps:install:end -->
       <ol class="steps">
         <li><h3>Download the APK</h3><p>Grab <code>FITS-QR.apk</code> from the latest release on GitHub.</p></li>
         <li><h3>Allow the install</h3><p>Android will ask once whether to trust an app from outside the Play Store. This is the normal prompt for a sideloaded APK.</p></li>
@@ -201,15 +211,18 @@
   </section>
 </main>
 
-<footer>
+<div class="site-foot">
   <div class="shell">
-    <span>© 2026 <a href="https://cocode.dk" target="_blank" rel="noreferrer">Cocode</a></span>
-    <span>Created by <a href="https://linkedin.com/in/babakbandpey" target="_blank" rel="noreferrer">Babak Bandpey</a></span>
-    <span class="spacer"><a href="https://fits.dk" target="_blank" rel="noreferrer">About FITS</a></span>
-    <span><a href="https://github.com/cocodedk/fits-qr">Source</a></span>
-    <span><a href="https://github.com/cocodedk/fits-qr/blob/main/LICENSE">Apache-2.0</a></span>
-  </div>
+    <!-- cocode-apps:footer:start -->
+<footer class="cocode-footer">
+  <a href="https://github.com/cocodedk/fits-qr">Source code</a> ·
+  License: Apache-2.0 ·
+  <a href="https://cocode.dk/">Made by Cocode (cocode.dk)</a>
 </footer>
+<!-- cocode-apps:footer:end -->
+    <a class="foot-about" href="https://fits.dk" target="_blank" rel="noreferrer">About FITS</a>
+  </div>
+</div>
 
 <script>
 window.__FITS_VCARDS = [
