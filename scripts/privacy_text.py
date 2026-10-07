@@ -9,7 +9,6 @@ technical term explained where it first appears.
 from __future__ import annotations
 
 from privacy_common import DPA, ISSUES, MAIL, PERMISSION
-from privacy_text_da import DA
 
 EN = {
     "lang": "en", "locale": "en_GB", "other": "da", "other_label": "Dansk",
@@ -118,4 +117,10 @@ EN = {
     ],
 }
 
-TEXT = {"en": EN, "da": DA}
+TEXT = {"en": EN}
+try:  # the Danish text is a separate file; the site builds the Danish page when it exists
+    from privacy_text_da import DA
+except ImportError:
+    pass
+else:
+    TEXT["da"] = DA

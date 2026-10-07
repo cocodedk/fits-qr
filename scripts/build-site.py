@@ -790,12 +790,15 @@ def main() -> None:
     (SITE / "app" / "index.html").write_text(kiosk("en"), encoding="utf-8")
     (SITE / "da" / "app").mkdir(exist_ok=True)
     (SITE / "da" / "app" / "index.html").write_text(kiosk("da"), encoding="utf-8")
-    # The privacy policy, one folder deeper than the home page; see privacy_pages.py.
-    for lang, folder in (("en", SITE / "privacy"), ("da", SITE / "da" / "privacy")):
-        folder.mkdir(parents=True, exist_ok=True)
-        write_page(folder / "index.html", privacy_pages.page(lang, BASE))
-    for rel in ("index.html", "da/index.html", "app/index.html", "da/app/index.html",
-                "privacy/index.html", "da/privacy/index.html"):
+    written = ["index.html", "da/index.html", "app/index.html", "da/app/index.html"]
+    # The privacy policy, one folder deeper than the home page; see privacy_pages.py. A language
+    # is written once its text exists (the Danish text, privacy_text_da.py, comes with the Danish PR).
+    for lang, rel in (("en", "privacy/index.html"), ("da", "da/privacy/index.html")):
+        if lang in privacy_pages.TEXT:
+            (SITE / rel).parent.mkdir(parents=True, exist_ok=True)
+            write_page(SITE / rel, privacy_pages.page(lang, BASE))
+            written.append(rel)
+    for rel in written:
         print(f"wrote {SITE / rel}")
 
 
