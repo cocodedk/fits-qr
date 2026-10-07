@@ -1,6 +1,7 @@
-"""Links and fragments shared by the English and Danish privacy text."""
+"""Links and fragments shared by the privacy text (English and Danish) and the site builder."""
 from __future__ import annotations
 
+WEBSITE = "https://fits.dk"  # FITS's own site; build-site.py and privacy_pages.py both link it
 ISSUES = "https://github.com/cocodedk/fits-qr/issues"
 DPA = "https://www.datatilsynet.dk/english"
 MAIL = '<a href="mailto:bb@cocode.dk">bb@cocode.dk</a>'

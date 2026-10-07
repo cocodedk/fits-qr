@@ -14,6 +14,7 @@ import pathlib
 import struct
 
 import privacy_pages
+from privacy_common import WEBSITE
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = ROOT / "website"
@@ -27,7 +28,6 @@ APK = "FITS-QR.apk"
 ORG = "FITS - Framework for IT Security"
 STREET, CITY, POSTAL, COUNTRY = "Københavnsvej 19B", "Roskilde", "4000", "Denmark"
 ADDRESS = f"{STREET}, {POSTAL} {CITY}"
-WEBSITE = "https://fits.dk"
 
 PEOPLE = [
     {

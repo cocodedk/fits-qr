@@ -9,9 +9,8 @@ No web fonts are loaded here: a privacy page should not call out to Google just 
 """
 from __future__ import annotations
 
+from privacy_common import WEBSITE
 from privacy_text import TEXT
-
-WEBSITE = "https://fits.dk"
 
 
 def page(lang: str, base: str) -> str:

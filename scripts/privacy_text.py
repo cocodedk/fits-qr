@@ -120,7 +120,8 @@ EN = {
 TEXT = {"en": EN}
 try:  # the Danish text is a separate file; the site builds the Danish page when it exists
     from privacy_text_da import DA
-except ImportError:
-    pass
+except ModuleNotFoundError as exc:  # only "the file is not there yet"; a broken Danish text must fail the build
+    if exc.name != "privacy_text_da":
+        raise
 else:
     TEXT["da"] = DA
