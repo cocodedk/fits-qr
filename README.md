@@ -64,7 +64,7 @@ access and requests no permissions.
 ## Privacy
 
 The app asks for no permissions and makes no network calls: the QR codes are generated on the
-device, and no data leaves it. There is no server component and there are no stored credentials. The only personal
+device, and nothing is sent over the network. Scanning a code gives the scanning phone that contact card. There is no server component and there are no stored credentials. The only personal
 details in the app are the three work contacts compiled into it.
 
 ## Build
