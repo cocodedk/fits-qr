@@ -152,59 +152,65 @@ STRINGS = {
         "title": "FITS QR — three FITS contacts, one scan",
         "description": (
             "An open-source Android app for FITS. Swipe between three FITS contact cards and "
-            "scan the QR code to save the contact — offline, no permissions, no tracking."
+            "scan the QR code to save the contact — offline, no permission prompts, no tracking."
         ),
         "eyebrow": "Open source · Android",
         "h1_a": "Three FITS contacts.",
         "h1_b": "One scan each.",
         "lede": (
-            "A single screen, three swipeable cards. Each card's QR code carries a full vCard, "
-            "so any phone camera saves the contact in one tap. The codes below are live — point "
-            "your phone at your screen right now."
+            "Three contact cards on one screen: swipe to move between them. Each card has a QR "
+            "code that holds a full vCard, a standard contact card. Scan it with a compatible "
+            "camera or QR scanner, then follow the prompt to save the contact. The codes below "
+            "work: point your phone's camera at your screen now."
         ),
-        "cta_apk": "Download the APK",
+        "cta_apk": "View downloads on GitHub",
         "cta_src": "Read the source",
         "cta_note": (
-            "Android 8.0 and up · ~6.8 MB · Apache-2.0 · built and signed by GitHub Actions"
+            "Android 8.0 and up · about 6.8 MB · Apache-2.0 · built and signed by GitHub Actions"
         ),
         "scan": "Scan to save the contact",
         "foot_note": "Danish product · European hosting",
         "dots_label": "Choose a contact card",
+        "slide_label": "contact card",
         "phone_label": "The FITS QR app screen — swipe or use the arrow keys",
+        "qr_alt": "QR code with the contact details of {name}",
+        "og_alt": "The FITS QR app screen, showing a contact card and its QR code",
         "payload_h2": "What the QR actually contains",
         "payload_p": (
-            "No shortlink, no redirect, no server in the middle. The code encodes a vCard 3.0 "
-            "in plain UTF-8, generated on your device. This is the exact text the card on the "
-            "left is showing right now."
+            "No shortlink, no redirect, no server in the middle. The code holds a vCard 3.0 as "
+            "plain UTF-8 text. The text box on this page shows what is inside the QR code of the "
+            "contact card you have selected. The Android app makes its QR codes on your phone; "
+            "this website shows prepared images with the same contact details."
         ),
         "payload_noscript": (
-            "The digits above are hidden while JavaScript is off — this page masks phone "
-            "numbers, email addresses and the house number so address harvesters cannot "
-            "scrape them. Turn JavaScript on, or scan the QR code, to see the full vCard."
+            "While JavaScript is off, this page shows the phone numbers, email addresses and "
+            "house number as dots. They are still public: the page's data and the QR images "
+            "contain them. Turn JavaScript on, or scan a QR code, to see them in full."
         ),
         "facts": [
-            (ICON_OFFLINE, "No permissions, no network",
-             "The app asks for nothing and talks to nobody. QR codes are generated on-device "
-             "with ZXing, so it works in airplane mode."),
+            (ICON_OFFLINE, "No permission prompts, no network",
+             "The app shows no permission prompts and has no internet access. It makes its QR "
+             "codes on your phone with ZXing, so it works in airplane mode."),
             (ICON_QR, "A real vCard, not a link",
              "Name, role, organisation, work phone, work email, the Roskilde office address and "
              "fits.dk — all inside the code itself."),
             (ICON_OSS, "Yours to read and rebuild",
-             "Apache-2.0, Kotlin and Jetpack Compose. Change a contact in one file and the QR "
-             "regenerates from it."),
+             "Apache-2.0, Kotlin and Jetpack Compose. Change a contact in one file and the "
+             "app's QR codes follow."),
         ],
         "install_h2": "Install it",
         "install_p": (
-            "The APK is built and signed by GitHub Actions on every release, so what you "
-            "download is what the workflow produced from this source."
+            "The APK, Android's installation file, is built and signed by GitHub Actions, "
+            "GitHub's automated build service, on every release. What you download is what it "
+            "produced from this source."
         ),
         "steps": [
             ("Download the APK",
              f"Grab <code>{APK}</code> from the latest release on GitHub."),
-            ("Allow the install",
-             "Android will ask once whether to trust an app from outside the Play Store. This "
-             "is the normal prompt for a sideloaded APK."),
-            ("Open and swipe",
+            ("Open the file and allow the install",
+             "Open the downloaded APK. If Android asks, allow your browser or file manager to "
+             "install unknown apps, then confirm the installation."),
+            ("Open the app and swipe",
              "Swipe left or right between the three cards. Hand your phone over, or let "
              "someone scan straight off your screen."),
         ],
@@ -215,7 +221,7 @@ STRINGS = {
         "kiosk_title": "FITS QR — the app, fullscreen",
         "kiosk_desc": (
             "The FITS QR app screen on its own, filling the display. Swipe between the three "
-            "contacts and scan a code to save it."
+            "contact cards and scan a QR code to save the contact."
         ),
         "back_label": "Back to the site",
     },
@@ -225,73 +231,81 @@ STRINGS = {
         "prefix": "../",
         "other_href": "../",
         "other_label": "English",
-        "title": "FITS QR — tre FITS-kontakter, ét scan",
+        "title": "FITS QR: tre FITS-kontakter, ét scan",
         "description": (
-            "En open source Android-app til FITS. Skift mellem tre FITS-kontaktkort og scan "
-            "QR-koden for at gemme kontakten — offline, uden tilladelser, uden sporing."
+            "En open source Android-app til FITS. Skift mellem tre FITS-kontaktkort, og scan "
+            "QR-koden for at gemme kontakten. Appen virker offline, viser ingen "
+            "tilladelsesbeskeder og sporer dig ikke."
         ),
         "eyebrow": "Open source · Android",
         "h1_a": "Tre FITS-kontakter.",
         "h1_b": "Ét scan hver.",
         "lede": (
-            "Én skærm, tre kort du skifter mellem. Hvert korts QR-kode indeholder et helt "
-            "visitkort, så et hvilket som helst telefonkamera gemmer kontakten med ét tryk. "
-            "Koderne herunder er ægte — hold telefonen op foran skærmen nu."
+            "Tre kontaktkort på én skærm: stryg for at skifte mellem dem. Hvert kort har en "
+            "QR-kode med et helt vCard, et standardformat til et kontaktkort. Scan den med et "
+            "kompatibelt kamera eller en QR-scanner, og følg anvisningen for at gemme kontakten. "
+            "Koderne herunder virker: peg telefonens kamera på skærmen nu."
         ),
-        "cta_apk": "Hent APK-filen",
+        "cta_apk": "Se downloads på GitHub",
         "cta_src": "Læs kildekoden",
         "cta_note": (
-            "Android 8.0 og nyere · ~6.8 MB · Apache-2.0 · bygget og signeret af GitHub Actions"
+            "Android 8.0 og nyere · ca. 6,8 MB · Apache-2.0 · bygget og signeret af GitHub Actions"
         ),
         "scan": "Scan for at gemme kontakten",
         "foot_note": "Dansk produkt · Europæisk hosting",
         "dots_label": "Vælg et kontaktkort",
-        "phone_label": "FITS QR-appens skærm — skift med swipe eller piletasterne",
+        "slide_label": "kontaktkort",
+        "phone_label": "FITS QR-appens skærm: stryg, eller brug piletasterne",
+        "qr_alt": "QR-kode med kontaktoplysningerne for {name}",
+        "og_alt": "FITS QR-appens skærm med et kontaktkort og dets QR-kode",
         "payload_h2": "Hvad QR-koden faktisk indeholder",
         "payload_p": (
-            "Ingen kort link, ingen omdirigering, ingen server undervejs. Koden indeholder et "
-            "vCard 3.0 i almindelig UTF-8, genereret på din egen telefon. Det er præcis den "
-            "tekst, kortet til venstre viser lige nu."
+            "Intet forkortet link, ingen omdirigering, ingen server undervejs. Koden indeholder "
+            "et vCard 3.0 som almindelig UTF-8-tekst. Tekstboksen på siden viser, hvad der står "
+            "i QR-koden på det kontaktkort, du har valgt. Android-appen laver sine QR-koder på "
+            "din telefon. Hjemmesiden viser færdige billeder med de samme kontaktoplysninger."
         ),
         "payload_noscript": (
-            "Cifrene ovenfor er skjult, fordi JavaScript er slået fra. Siden maskerer "
-            "telefonnumre, mailadresser og husnummeret, så robotter ikke kan høste dem. "
-            "Slå JavaScript til, eller scan QR-koden, for at se hele kortet."
+            "Når JavaScript er slået fra, viser siden telefonnumre, mailadresser og husnummer "
+            "som prikker. De er stadig offentlige: de ligger i sidens data og i QR-billederne. "
+            "Slå JavaScript til, eller scan en QR-kode, for at se dem helt."
         ),
         "facts": [
-            (ICON_OFFLINE, "Ingen tilladelser, intet netværk",
-             "Appen beder ikke om noget og kontakter ingen. QR-koderne genereres på telefonen "
-             "med ZXing, så den virker i flytilstand."),
+            (ICON_OFFLINE, "Ingen tilladelsesbeskeder, intet netværk",
+             "Appen viser ingen tilladelsesbeskeder og har ikke adgang til internettet. Den laver "
+             "QR-koderne på telefonen med ZXing, så den virker i flytilstand."),
             (ICON_QR, "Et rigtigt vCard, ikke et link",
              "Navn, rolle, organisation, arbejdstelefon, arbejdsmail, adressen i Roskilde og "
-             "fits.dk — alt ligger inde i selve koden."),
-            (ICON_OSS, "Din at læse og bygge om",
-             "Apache-2.0, Kotlin og Jetpack Compose. Ret en kontakt i én fil, og QR-koden "
-             "bliver genereret på ny ud fra den."),
+             "fits.dk ligger alt sammen inde i selve koden."),
+            (ICON_OSS, "Læs og tilpas kildekoden",
+             "Apache-2.0, Kotlin og Jetpack Compose. Ret en kontakt i én fil, så følger appens "
+             "QR-koder med."),
         ],
         "install_h2": "Sådan installerer du den",
         "install_p": (
-            "APK-filen bygges og signeres af GitHub Actions ved hver udgivelse, så det du "
-            "henter, er præcis det workflowet byggede ud fra denne kildekode."
+            "APK-filen, Androids installationsfil, bygges og signeres af GitHub Actions, "
+            "GitHubs automatiske byggetjeneste, ved hver udgivelse. Det, du henter, er det, "
+            "tjenesten har bygget ud fra denne kildekode."
         ),
         "steps": [
             ("Hent APK-filen",
              f"Hent <code>{APK}</code> fra den nyeste udgivelse på GitHub."),
-            ("Tillad installationen",
-             "Android spørger én gang, om du vil stole på en app uden for Play Store. Det er "
-             "den normale besked for en APK, du selv installerer."),
-            ("Åbn og skift kort",
-             "Skift mellem de tre kort med en swipe til højre eller venstre. Ræk telefonen "
-             "frem, eller lad folk scanne direkte fra skærmen."),
+            ("Åbn filen, og tillad installationen",
+             "Åbn den hentede APK-fil. Hvis Android beder om det, skal du give browseren eller "
+             "filhåndteringen tilladelse til at installere ukendte apps. Bekræft derefter "
+             "installationen."),
+            ("Åbn appen, og stryg",
+             "Stryg mod højre eller venstre for at skifte mellem de tre kontaktkort. Ræk "
+             "telefonen frem, eller lad andre scanne direkte fra din skærm."),
         ],
         "footer_about": "Om FITS",
         "fullscreen": "Fuldskærm",
         "exit_fullscreen": "Forlad fuldskærm",
         "kiosk_link": "Åbn appen på sin egen side",
-        "kiosk_title": "FITS QR — appen i fuldskærm",
+        "kiosk_title": "FITS QR: appen i fuldskærm",
         "kiosk_desc": (
-            "FITS QR-appens skærm alene, i fuld størrelse. Skift mellem de tre kontakter og "
-            "scan en kode for at gemme den."
+            "FITS QR-appens skærm alene, i fuld størrelse. Skift mellem de tre kontaktkort, og "
+            "scan en QR-kode for at gemme kontakten."
         ),
         "back_label": "Tilbage til siden",
     },
@@ -315,11 +329,11 @@ def card_html(p: dict, s: dict) -> str:
     pre = s["prefix"]
     name = f"{p['first']} {p['last']}"
     qr_w, qr_h = png_size(SITE / p["qr"])
-    return f"""        <article class="card" role="group" aria-roledescription="slide" aria-label="{name}">
+    return f"""        <article class="card" role="group" aria-roledescription="{s['slide_label']}" aria-label="{name}">
           <div class="qr-wrap">
             <div class="qr-glow"></div>
             <div class="qr-card">
-              <img src="{pre}{p['qr']}" width="{qr_w}" height="{qr_h}" alt="QR code holding {name}'s contact details" loading="lazy" decoding="async">
+              <img src="{pre}{p['qr']}" width="{qr_w}" height="{qr_h}" alt="{s['qr_alt'].format(name=name)}" loading="lazy" decoding="async">
             </div>
           </div>
           <p class="scan-hint">{ICON_SCAN}{s['scan']}</p>
@@ -553,7 +567,7 @@ def page(lang: str) -> str:
     s = STRINGS[lang]
     pre = s["prefix"]
     canonical = f"{BASE}/" if lang == "en" else f"{BASE}/{lang}/"
-    og_alt = "The FITS QR app screen, showing a contact card and its QR code"
+    og_alt = s["og_alt"]
     facts = "\n".join(
         f"""      <div class="fact">{icon}<h3>{title}</h3><p>{body}</p></div>"""
         for icon, title, body in s["facts"]

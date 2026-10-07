@@ -1,1 +1,1 @@
-Three FITS contact cards, each with a QR code that saves the contact
+Three FITS contact cards. Scan a card's QR code to save the contact.

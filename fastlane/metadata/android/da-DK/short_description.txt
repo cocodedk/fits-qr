@@ -1,1 +1,1 @@
-Tre FITS-kontaktkort, hvert med en QR-kode, der gemmer kontakten
+Tre FITS-kontaktkort. Scan et korts QR-kode for at gemme kontakten.
