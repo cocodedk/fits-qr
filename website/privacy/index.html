@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy: FITS</title>
+<meta name="description" content="Privacy policy for the FITS Android app: it collects nothing, has no internet permission and sends no data anywhere.">
+<meta name="author" content="Babak Bandpey">
+<meta name="theme-color" content="#0b1524">
+<link rel="canonical" href="https://cocodedk.github.io/fits-qr/privacy/">
+<link rel="alternate" hreflang="en" href="https://cocodedk.github.io/fits-qr/privacy/">
+<link rel="alternate" hreflang="da" href="https://cocodedk.github.io/fits-qr/da/privacy/">
+<link rel="alternate" hreflang="x-default" href="https://cocodedk.github.io/fits-qr/privacy/">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="180x180" href="../favicon-180.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FITS QR">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://cocodedk.github.io/fits-qr/privacy/">
+<meta property="og:title" content="Privacy policy: FITS">
+<meta property="og:description" content="Privacy policy for the FITS Android app: it collects nothing, has no internet permission and sends no data anywhere.">
+<meta property="og:image" content="https://cocodedk.github.io/fits-qr/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="shell">
+    <!-- cocode-apps:nav:start -->
+<link rel="stylesheet" href="/fits-qr/css/cocode-nav.css">
+<a class="skip" href="#main">Skip to content</a>
+<nav class="cocode-nav" aria-label="FITS">
+  <a class="brand" href="/fits-qr/" data-nav="home"><img src="/fits-qr/img/icon.png" alt="" width="32" height="32">FITS</a>
+  <a href="/fits-qr/#how" data-nav="how">How it works</a>
+  <a href="/fits-qr/#install" data-nav="install">Install</a>
+  <a href="https://cocode.dk/" data-nav="more">More apps</a>
+</nav>
+<!-- cocode-apps:nav:end -->
+    <a class="lang-switch" href="../da/privacy/" hreflang="da" lang="da">Dansk</a>
+  </div>
+</header>
+
+<main id="main" tabindex="-1" class="legal">
+  <div class="shell">
+    <h1>Privacy policy: FITS</h1>
+    <p class="meta">Effective <time datetime="2026-10-07">7 October 2026</time>. This policy covers the Android app FITS (package <code>dk.fits.contact</code>, called FITS QR on this website).</p>
+    <h2>Summary</h2>
+    <p>FITS collects nothing about you. The app shows three work contact cards, each with a QR code, and everything on them is built into the app. It has no permission to use the internet, so it cannot send anything anywhere. It has no account, no analytics and no ads.</p>
+    <h2>What is collected</h2>
+    <p>Nothing. The app has no sign-up, no input fields and no settings, so it never receives anything from you. It asks for no access to your contacts, camera, location, microphone or files.</p>
+    <p>The only personal details in the app are those of the three people on its cards: Bassil Salameh (CEO), Babak Bandpey (CTO) and Silas Stilling Jørgensen (Cybersecurity Developer). For each of them the app holds a work email address, a work phone number and the FITS office address in Roskilde. They are not collected from you. The app's publisher wrote them into the app, and each QR code carries them as a vCard together with fits.dk.</p>
+    <p>Whoever scans a code gets that card on their own phone. What the scanning phone's camera app does with it is up to that app, not this one.</p>
+    <h2>Servers the app contacts</h2>
+    <p>None. The app does not hold Android's internet permission (<code>INTERNET</code>), and without it Android does not let an app open a network connection. The code has no network calls and no web view, and it never opens a link. The address fits.dk appears only as text inside the vCard. The QR codes are drawn on the phone itself with the ZXing library.</p>
+    <h2>Permissions</h2>
+    <p>The app asks for none, and Android shows no permission prompt for it. Its own manifest declares no permission.</p>
+    <p>The finished app lists one entry that is not ours, <code>dk.fits.contact.DYNAMIC_RECEIVER_<wbr>NOT_EXPORTED_<wbr>PERMISSION</code>. An Android library adds it automatically. It is a private permission named after the app, of the kind only the app itself can use (protection level &quot;signature&quot;), and it gives no access to anything on your phone.</p>
+    <h2>What stays on the phone</h2>
+    <p>The app saves nothing of its own: no settings, no history, no database and no files. The cards are part of the app. Which card is showing is remembered only while the app is open.</p>
+    <p>Android's backup switch is left on in the manifest (<code>allowBackup</code>). Since the app saves no data of its own, a backup has none of the app's data to copy. Uninstalling the app removes the app and what Android keeps for it.</p>
+    <h2>Third parties</h2>
+    <p>None receives anything from the app. The app has no analytics, advertising or crash-reporting library. It is built from AndroidX and Jetpack Compose (Google's libraries for Android apps) and ZXing, which draws the QR codes. With no internet permission, none of them can send anything out.</p>
+    <p>Getting the app is outside the app. The APK is built and signed by GitHub Actions and published on GitHub Releases, and you download it from GitHub directly or through Obtainium. That download is between your phone and GitHub.</p>
+    <p>This website is hosted on GitHub Pages. Its home page loads typefaces from Google Fonts, so Google can see that visit. This privacy page loads nothing from other sites, and none of the site's pages contain analytics code or code that sets cookies.</p>
+    <h2>Your rights</h2>
+    <p>The app holds no data about you, so there is nothing for you to access, correct or delete. Under the General Data Protection Regulation (GDPR) you may still ask the publisher what it holds about you, have it corrected or deleted, and complain to the Danish Data Protection Agency, <a href="https://www.datatilsynet.dk/english">Datatilsynet</a>.</p>
+    <p>If you are one of the three people on the cards and want your details changed or removed, write to the address under Contact. A change reaches a phone only when the app is updated on it.</p>
+    <h2>Contact</h2>
+    <p>FITS is published by Cocode (Babak Bandpey) for FITS (fits.dk). Write to <a href="mailto:bb@cocode.dk">bb@cocode.dk</a>, or open an issue on <a href="https://github.com/cocodedk/fits-qr/issues">GitHub</a>.</p>
+    <h2>Changes</h2>
+    <p>If the policy changes, the date at the top changes and the change is described here. Older versions are in the project's history on GitHub.</p>
+    <p>7 October 2026: first published.</p>
+    <p class="back"><a href="../">Back to the front page</a></p>
+  </div>
+</main>
+
+<div class="site-foot">
+  <div class="shell">
+    <!-- cocode-apps:footer:start -->
+<footer class="cocode-footer">
+  <a href="https://github.com/cocodedk/fits-qr">Source code</a> ·
+  License: Apache-2.0 ·
+  <a href="https://cocode.dk/">Made by Cocode (cocode.dk)</a>
+</footer>
+<!-- cocode-apps:footer:end -->
+    <a class="foot-about" href="https://fits.dk" target="_blank" rel="noreferrer">About FITS</a>
+  </div>
+</div>
+
+</body>
+</html>

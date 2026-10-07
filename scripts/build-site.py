@@ -13,6 +13,8 @@ import base64
 import pathlib
 import struct
 
+import privacy_pages
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = ROOT / "website"
 OWNER = "cocodedk"
@@ -788,7 +790,12 @@ def main() -> None:
     (SITE / "app" / "index.html").write_text(kiosk("en"), encoding="utf-8")
     (SITE / "da" / "app").mkdir(exist_ok=True)
     (SITE / "da" / "app" / "index.html").write_text(kiosk("da"), encoding="utf-8")
-    for rel in ("index.html", "da/index.html", "app/index.html", "da/app/index.html"):
+    # The privacy policy, one folder deeper than the home page; see privacy_pages.py.
+    for lang, folder in (("en", SITE / "privacy"), ("da", SITE / "da" / "privacy")):
+        folder.mkdir(parents=True, exist_ok=True)
+        write_page(folder / "index.html", privacy_pages.page(lang, BASE))
+    for rel in ("index.html", "da/index.html", "app/index.html", "da/app/index.html",
+                "privacy/index.html", "da/privacy/index.html"):
         print(f"wrote {SITE / rel}")
 
 

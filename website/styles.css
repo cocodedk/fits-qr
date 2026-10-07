@@ -667,6 +667,35 @@ body.kiosk .phone {
 .site-foot .foot-about:hover { color: var(--ink); }
 .site-foot .foot-about { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-dim); }
 
+/* ── Privacy policy page (privacy/ and da/privacy/) ─────────────────── */
+.legal { padding: 56px 0 72px; }
+.legal .shell { max-width: 760px; }
+.legal h1 {
+  font-size: clamp(2rem, 6vw, 2.9rem);
+  line-height: 1.08;
+  margin: 0 0 14px;
+}
+.legal .meta { margin: 0 0 12px; color: var(--ink-dim); font-size: 14.5px; }
+.legal h2 {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin: 40px 0 10px;
+}
+.legal p { margin: 0 0 14px; color: var(--ink-dim); text-wrap: pretty; }
+.legal p a { text-decoration: underline; text-underline-offset: 3px; }
+.legal code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  overflow-wrap: anywhere;
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.08);
+}
+.legal .back { margin-top: 40px; }
+
 /* ── Persian/RTL and Danish share the LTR layout; Danish needs nothing ── */
 
 /* ── Responsive ─────────────────────────────────────────────────────── */
