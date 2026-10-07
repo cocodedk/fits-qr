@@ -65,13 +65,17 @@ EN = {
             "may use, for example, your camera or location. FITS shows no permission prompt. Its "
             "manifest, the file where an app lists what it asks for, declares no permission.",
             f"One entry in the finished app is not ours: {PERMISSION}. An Android library adds it "
-            "automatically. It is a private permission named after the app, and only the app itself "
-            "can use it (Android calls this protection level &quot;signature&quot;). It gives no "
-            "access to anything on your phone.",
+            "automatically. It is a private permission named after the app. Android calls its protection "
+            "level &quot;signature&quot;: only apps signed with the same certificate as FITS can get it. "
+            "It gives no access to anything on your phone.",
         ]),
         ("What stays on the phone", [
             "The app saves nothing of its own: no settings, no history, no database and no files. The "
-            "cards are part of the app. The app remembers which card is showing only while it is open.",
+            "cards are part of the app. The app remembers which card is showing, whether the About page is "
+            "open and which About button could not open a page. It leaves that to Android's feature for "
+            "remembering an app's state, so you land in the same place when you turn the phone or switch "
+            "back to the app. Android holds it for the app only while the app is among your recent apps, "
+            "and the app writes it to no file.",
             "Android's backup feature (it copies app data when you back up your phone) is left on for "
             "this app in the manifest (<code>allowBackup</code>). Because the app saves no data of its "
             "own, a backup has none of the app's data to copy. If you uninstall the app, the app and "
